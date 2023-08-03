@@ -112,9 +112,28 @@ const Home: NextPage = () => {
         </div>
       </div>
 
+      {/* Buidl in Community */}
+      <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
+        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
+          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
+          <p className="text-center m-0">
+            Open source forkable Ethereum dev stack built, mantained and supported by BuidlGuidl community, with over
+            800 active builders.
+          </p>
+          <a
+            href="https://buidlguidl.com"
+            target="_blank"
+            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
+            rel="noreferrer"
+          >
+            View BuidlGuidl
+          </a>
+        </div>
+      </div>
+
       {/* Feature Builds */}
       <div className="bg-base-300">
-        <div className="container flex flex-col items-center justify-center max-w-[90%] lg:max-w-6xl mx-auto py-16 lg:py-28 lg:px-12 gap-6">
+        <div className="container flex flex-col items-center justify-center max-w-[90%] lg:max-w-6xl mx-auto py-16 pt-24 lg:py-28 lg:px-12 gap-6">
           <div className="gap-4 flex flex-col items-center">
             <h2 className="text-3xl lg:text-5xl font-semibold my-0 text-center">Built with Scaffold-ETH 2</h2>
             <p className="lg:w-3/5 text-center m-0">
@@ -128,19 +147,19 @@ const Home: NextPage = () => {
               name="SpeedrunEthereum"
               description="Built in Scaffold-eth and recently migrated to Scaffold-eth 2 to help developers transitioning from web2 to web3."
               src="/assets/speedRunEthereum.png"
-              link="https://app.buidlguidl.com/build/mTKhXMLEOCQEgPgG57R9"
+              link="https://speedrunethereum.com/"
             />
             <BuildCard
               name="Hacker House streams"
               description="Platform to retroactively fund open-source work by providing a monthly UBI to developers, rewarding them for their ongoing contributions."
               src="/assets/hackerHouse.png"
-              link="https://app.buidlguidl.com/build/oAXJ151jdDixCEgwnpf6"
+              link="https://github.com/BuidlGuidl/hacker-houses-streams"
             />
             <BuildCard
               name="Event Wallet"
               description="Web-based crypto (burner) wallet, aiming to enhance the experience of attendees at events, by providing a gamification element."
               src="/assets/eventWallet.png"
-              link="https://buidlguidl.com/build/oFWIYHo7WkvFQ29WQ12J"
+              link="https://github.com/BuidlGuidl/event-wallet"
             />
           </div>
         </div>
