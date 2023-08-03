@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { BuildCard } from "~~/components/BuildCard";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
           </div>
           <p className="text-3xl m-0 font-medium mt-1">Scaffold-ETH 2</p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-8">
+        <div className="flex flex-col justify-center items-center gap-8 mb-14">
           <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
             Everything you need to build dapps on Ethereum
           </h1>
@@ -62,6 +63,85 @@ const Home: NextPage = () => {
               <span>Start building</span>
               <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
             </a>
+          </div>
+        </div>
+      </div>
+      {/* Debug Contracts */}
+      <div className="bg-base-300/20">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
+          <div className="space-y-6">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
+              <Image src="/assets/debugLogo.svg" alt="debug icon" height={30} width={30} />
+              <p className="text-center lg:text-left text-xl m-0 font-light">DEBUG CONTRACTS</p>
+            </div>
+
+            <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
+              Experiment with Solidity using a frontend that adapts to your smart contract
+            </h2>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+              Debug and refine your smart contracts with a live-updating frontend. Scaffold-eth 2 is an ideal stack for
+              progressing from rapid prototyping to production-grade dapps.
+            </p>
+          </div>
+          <div className="max-w-[400px] lg:max-w-none">
+            <Image src="/assets/seDebugContracts.png" alt="Debug contracts" width={1200} height={1200} />
+          </div>
+        </div>
+      </div>
+
+      {/* Block Explorer */}
+      <div className="bg-base-200">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
+          <div className="space-y-6">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
+              <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
+              <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
+            </div>
+
+            <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
+              Built-in Block Explorer to check transaction data easily during your tests
+            </h2>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+              Review transaction data to make sure everything is working as expected. With Scaffold-eth 2 built-in Block
+              Explorer you can check the transactions of your dapp during your local tests.
+            </p>
+          </div>
+          <div className="max-w-[400px] lg:max-w-none">
+            <Image src="/assets/blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
+          </div>
+        </div>
+      </div>
+
+      {/* Feature Builds */}
+      <div className="bg-base-300">
+        <div className="container flex flex-col items-center justify-center max-w-[90%] lg:max-w-6xl mx-auto py-16 lg:py-28 lg:px-12 gap-6">
+          <div className="gap-4 flex flex-col items-center">
+            <h2 className="text-3xl lg:text-5xl font-semibold my-0 text-center">Built with Scaffold-ETH 2</h2>
+            <p className="lg:w-3/5 text-center m-0">
+              Powered by Scaffold-eth 2, these fork-able builds are one of the of easiest ways to launch a project.
+            </p>
+          </div>
+          {/* Card Container  */}
+          <div className="flex gap-8 flex-wrap lg:flex-nowrap justify-center mt-8">
+            {/* Card */}
+            <BuildCard
+              name="SpeedrunEthereum"
+              description="Built in Scaffold-eth and recently migrated to Scaffold-eth 2 to help developers transitioning from web2 to web3."
+              src="/assets/speedRunEthereum.png"
+              link="https://app.buidlguidl.com/build/mTKhXMLEOCQEgPgG57R9"
+            />
+            <BuildCard
+              name="Hacker House streams"
+              description="Platform to retroactively fund open-source work by providing a monthly UBI to developers, rewarding them for their ongoing contributions."
+              src="/assets/hackerHouse.png"
+              link="https://app.buidlguidl.com/build/oAXJ151jdDixCEgwnpf6"
+            />
+            <BuildCard
+              name="Event Wallet"
+              description="Web-based crypto (burner) wallet, aiming to enhance the experience of attendees at events, by providing a gamification element."
+              src="/assets/eventWallet.png"
+              link="https://buidlguidl.com/build/oFWIYHo7WkvFQ29WQ12J"
+            />
           </div>
         </div>
       </div>
