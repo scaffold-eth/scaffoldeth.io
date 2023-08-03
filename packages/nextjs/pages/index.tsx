@@ -11,19 +11,19 @@ const Home: NextPage = () => {
     <>
       <MetaHeader />
       {/* Hero section  */}
-      <div className="flex flex-col items-center py-8 border-2 border-red-500 gap-24">
+      <div className="flex flex-col items-center py-8 gap-12 md:gap-20">
         <div className="flex items-center gap-2">
           <div className="flex relative w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
           <p className="text-3xl m-0 font-medium mt-1">Scaffold-ETH 2</p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-4 border border-green-500">
-          <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3">
+        <div className="flex flex-col justify-center items-center gap-8">
+          <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
             Everything you need to build dapps on Ethereum
           </h1>
           <p className="m-0 text-center max-w-xl px-3">
-            A modern, clean version of scaffold-eth with RainbowKit, NextJS <br /> and Typescript. Supports Hardhat and
+            A modern, clean version of scaffold-eth with RainbowKit, NextJS and Typescript. Supports Hardhat and
             Foundry.
           </p>
           <CopyToClipboard
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
               }, 800);
             }}
           >
-            <div className="max-w-sm flex border-2 border-gray-300 rounded-md px-6 py-1 gap-2">
+            <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
               <p className="m-0">npx create-eth@latest</p>
               {npxCommandCopied ? (
                 <CheckCircleIcon className="text-xl font-normal h-6 w-4 cursor-pointer" aria-hidden="true" />
@@ -44,13 +44,24 @@ const Home: NextPage = () => {
               )}
             </div>
           </CopyToClipboard>
-          <div className="flex gap-4">
-            <button className="btn btn-outline bg-white leading-[0rem] h-8 min-h-fit py-3 normal-case font-normal">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <a
+              href="https://scaffold-eth-2-docs.vercel.app/"
+              target="_blank"
+              className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
+              rel="noreferrer"
+            >
               View the Docs
-            </button>
-            <button className="btn btn-outline bg-black text-white leading-[0rem] h-8 min-h-fit py-3 normal-case font-normal">
-              Start building
-            </button>
+            </a>
+            <a
+              href="https://github.com/scaffold-eth/scaffold-eth-2"
+              target="_blank"
+              className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
+              rel="noreferrer"
+            >
+              <span>Start building</span>
+              <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
+            </a>
           </div>
         </div>
       </div>
