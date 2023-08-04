@@ -155,7 +155,7 @@ const Home: NextPage = () => {
             </p>
           </div>
           <div className="max-w-[400px] lg:max-w-none">
-            <Image src="/assets/se2blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
+            <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
           </div>
         </div>
       </div>
