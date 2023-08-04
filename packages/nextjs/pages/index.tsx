@@ -89,9 +89,28 @@ const Home: NextPage = () => {
         </div>
       </div>
 
+      {/* Buidl in Community */}
+      <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
+        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
+          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
+          <p className="text-center m-0">
+            Open source forkable Ethereum dev stack built, mantained and supported by BuidlGuidl community, with over
+            800 active builders.
+          </p>
+          <a
+            href="https://buidlguidl.com"
+            target="_blank"
+            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
+            rel="noreferrer"
+          >
+            View BuidlGuidl
+          </a>
+        </div>
+      </div>
+
       {/* Block Explorer */}
       <div className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
             <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
@@ -109,25 +128,6 @@ const Home: NextPage = () => {
           <div className="max-w-[400px] lg:max-w-none">
             <Image src="/assets/blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
           </div>
-        </div>
-      </div>
-
-      {/* Buidl in Community */}
-      <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
-        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
-          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
-          <p className="text-center m-0">
-            Open source forkable Ethereum dev stack built, mantained and supported by BuidlGuidl community, with over
-            800 active builders.
-          </p>
-          <a
-            href="https://buidlguidl.com"
-            target="_blank"
-            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-            rel="noreferrer"
-          >
-            View BuidlGuidl
-          </a>
         </div>
       </div>
 
