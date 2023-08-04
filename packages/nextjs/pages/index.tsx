@@ -78,8 +78,8 @@ const Home: NextPage = () => {
               Experiment with Solidity using a frontend that adapts to your smart contract
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
-              Debug and refine your smart contracts with a live-updating frontend. Scaffold-eth 2 is an ideal stack for
-              progressing from rapid prototyping to production-grade dapps.
+              Debug and refine your smart contracts with a live-updating frontend. Scaffold-ETH 2 is an ideal stack for
+              progressing from rapid prototyping to production-grade dApps.
             </p>
           </div>
           <div className="max-w-[400px] lg:max-w-none">
@@ -120,7 +120,7 @@ const Home: NextPage = () => {
               Built-in Block Explorer to check transaction data easily during your tests
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
-              Review transaction data to make sure everything is working as expected. With Scaffold-eth 2 built-in Block
+              Review transaction data to make sure everything is working as expected. With Scaffold-ETH 2 built-in Block
               Explorer you can check the transactions of your dapp during your local tests.
             </p>
           </div>
