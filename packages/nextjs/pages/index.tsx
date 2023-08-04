@@ -3,7 +3,6 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { BuildCard } from "~~/components/BuildCard";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
@@ -127,40 +126,6 @@ const Home: NextPage = () => {
           </div>
           <div className="max-w-[400px] lg:max-w-none">
             <Image src="/assets/blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
-          </div>
-        </div>
-      </div>
-
-      {/* Feature Builds */}
-      <div className="bg-base-300">
-        <div className="container flex flex-col items-center justify-center max-w-[90%] lg:max-w-6xl mx-auto py-16 pt-24 lg:py-28 lg:px-12 gap-6">
-          <div className="gap-4 flex flex-col items-center">
-            <h2 className="text-3xl lg:text-5xl font-semibold my-0 text-center">Built with Scaffold-ETH 2</h2>
-            <p className="lg:w-3/5 text-center m-0">
-              Powered by Scaffold-eth 2, these fork-able builds are one of the of easiest ways to launch a project.
-            </p>
-          </div>
-          {/* Card Container  */}
-          <div className="flex gap-8 flex-wrap lg:flex-nowrap justify-center mt-8">
-            {/* Card */}
-            <BuildCard
-              name="SpeedrunEthereum"
-              description="Built in Scaffold-eth and recently migrated to Scaffold-eth 2 to help developers transitioning from web2 to web3."
-              src="/assets/speedRunEthereum.png"
-              link="https://speedrunethereum.com/"
-            />
-            <BuildCard
-              name="Hacker House streams"
-              description="Platform to retroactively fund open-source work by providing a monthly UBI to developers, rewarding them for their ongoing contributions."
-              src="/assets/hackerHouse.png"
-              link="https://github.com/BuidlGuidl/hacker-houses-streams"
-            />
-            <BuildCard
-              name="Event Wallet"
-              description="Web-based crypto (burner) wallet, aiming to enhance the experience of attendees at events, by providing a gamification element."
-              src="/assets/eventWallet.png"
-              link="https://github.com/BuidlGuidl/event-wallet"
-            />
           </div>
         </div>
       </div>
