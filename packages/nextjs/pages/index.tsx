@@ -11,7 +11,10 @@ const Home: NextPage = () => {
     <>
       <MetaHeader />
       {/* Hero section  */}
-      <div className="flex flex-col items-center py-8 gap-12 md:gap-20">
+      <div
+        className="flex flex-col items-center py-8 gap-12 md:gap-20"
+        style={{ backgroundImage: `url(/assets/heroPattern.svg)`, backgroundRepeat: "repeat" }}
+      >
         <div className="flex items-center gap-2">
           <div className="flex relative w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
@@ -23,7 +26,7 @@ const Home: NextPage = () => {
             Everything you need to build dApps on Ethereum
           </h1>
           <p className="m-0 text-center max-w-xl px-3">
-            A modern, clean version of scaffold-eth with RainbowKit, NextJS and Typescript. Supports Hardhat and
+            A modern, clean version of Scaffold-ETH with RainbowKit, NextJS and Typescript. Supports Hardhat and
             Foundry.
           </p>
           <CopyToClipboard
@@ -51,7 +54,7 @@ const Home: NextPage = () => {
               className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
               rel="noreferrer"
             >
-              View the Docs
+              Documentation
             </a>
             <a
               href="https://github.com/scaffold-eth/scaffold-eth-2"
@@ -59,7 +62,7 @@ const Home: NextPage = () => {
               className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
               rel="noreferrer"
             >
-              <span>Start building</span>
+              <span>View on Github</span>
               <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
             </a>
           </div>
@@ -84,7 +87,7 @@ const Home: NextPage = () => {
             </p>
           </div>
           <div className="max-w-[400px] lg:max-w-none">
-            <Image src="/assets/seDebugContracts.png" alt="Debug contracts" width={1200} height={1200} />
+            <Image src="/assets/se2DebugContracts.png" alt="Debug contracts" width={1400} height={1400} />
           </div>
         </div>
       </div>
@@ -107,8 +110,8 @@ const Home: NextPage = () => {
                 Common web3 components in tailwind and daisy UI
               </h2>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
-                Accelerate your dapp development with Scaffold-eth 2 pre-built components for common web3 use cases. Use
-                tailwind and daisy UI to style your dapp and give it a modern and appealing design.
+                Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
+                daisyUI to style your dapp and give it a modern and appealing design.
               </p>
             </div>
           </div>
@@ -120,8 +123,8 @@ const Home: NextPage = () => {
         <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
           <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
           <p className="text-center m-0">
-            Open source forkable Ethereum dev stack built, mantained and supported by BuidlGuidl community, with over
-            800 active builders.
+            You can build and learn together with the BuidlGuidl community, joining over 800 members in creating
+            products, prototypes, and tutorials to enrich the web3 ecosystem.
           </p>
           <a
             href="https://buidlguidl.com"
@@ -129,7 +132,7 @@ const Home: NextPage = () => {
             className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
             rel="noreferrer"
           >
-            View BuidlGuidl
+            Learn More
           </a>
         </div>
       </div>
@@ -147,12 +150,12 @@ const Home: NextPage = () => {
               Built-in Block Explorer to check transaction data easily during your tests
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
-              Review transaction data to make sure everything is working as expected. With Scaffold-ETH 2 built-in Block
-              Explorer you can check the transactions of your dapp during your local tests.
+              Review transaction data from your local tests to make sure everything is working as expected. With our
+              built-in Block Explorer, you can check the transaction details from your dapp while tinkering with it.
             </p>
           </div>
           <div className="max-w-[400px] lg:max-w-none">
-            <Image src="/assets/blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
+            <Image src="/assets/se2blockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
           </div>
         </div>
       </div>
