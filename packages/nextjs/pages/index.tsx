@@ -136,7 +136,7 @@ const Home: NextPage = () => {
 
       {/* Block Explorer */}
       <div className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
             <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
