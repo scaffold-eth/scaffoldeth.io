@@ -65,6 +65,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
       {/* Debug Contracts */}
       <div className="bg-base-300/20">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
@@ -84,6 +85,32 @@ const Home: NextPage = () => {
           </div>
           <div className="max-w-[400px] lg:max-w-none">
             <Image src="/assets/seDebugContracts.png" alt="Debug contracts" width={1200} height={1200} />
+          </div>
+        </div>
+      </div>
+
+      {/* SE-2 Components */}
+      <div className="bg-base-300/60">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
+          <div className="flex flex-col items-center">
+            <div className="max-w-[400px] lg:max-w-none">
+              <Image src="/assets/se2Components.png" alt="Scaffold-ETH 2 components" width={900} height={900} />
+            </div>
+          </div>
+          <div className="space-y-6 flex flex-col items-center lg:items-end">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4">
+              <Image src="/assets/sparkles.svg" alt="debug icon" height={20} width={20} />
+              <p className="text-center lg:text-left text-xl m-0 font-light">COMPONENTS</p>
+            </div>
+            <div className="lg:w-3/4">
+              <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
+                Common web3 components in tailwind and daisy UI
+              </h2>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+                Accelerate your dapp development with Scaffold-eth 2 pre-built components for common web3 use cases. Use
+                tailwind and daisy UI to style your dapp and give it a modern and appealing design.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -109,7 +136,7 @@ const Home: NextPage = () => {
 
       {/* Block Explorer */}
       <div className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
             <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
