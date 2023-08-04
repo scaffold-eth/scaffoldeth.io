@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         </div>
         <div className="flex flex-col justify-center items-center gap-8 mb-14">
           <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
-            Everything you need to build dapps on Ethereum
+            Everything you need to build dApps on Ethereum
           </h1>
           <p className="m-0 text-center max-w-xl px-3">
             A modern, clean version of scaffold-eth with RainbowKit, NextJS and Typescript. Supports Hardhat and
