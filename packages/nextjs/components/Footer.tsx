@@ -5,7 +5,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
  */
 export const Footer = () => {
   return (
-    <div className="min-h-0 p-5 mb-11 lg:mb-0 bg-neutral">
+    <div className="min-h-0 p-5 bg-neutral">
       <div className="w-full">
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full text-white">
