@@ -6,6 +6,7 @@ import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outl
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
+  const [cloneCommandCopied, setCloneCommandCopied] = useState(false);
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
   return (
     <>
@@ -30,23 +31,57 @@ const Home: NextPage = () => {
             Foundry.
           </p>
           <CopyToClipboard
-            text={"npx create-eth@latest"}
+            text={"git clone https://github.com/scaffold-eth/scaffold-eth-2.git"}
             onCopy={() => {
-              setNpxCommandCopied(true);
+              setCloneCommandCopied(true);
               setTimeout(() => {
-                setNpxCommandCopied(false);
+                setCloneCommandCopied(false);
               }, 800);
             }}
           >
-            <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
-              <p className="m-0">npx create-eth@latest</p>
-              {npxCommandCopied ? (
-                <CheckCircleIcon className="text-xl font-normal h-6 w-4 cursor-pointer" aria-hidden="true" />
+            <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
+              <p className="m-0">git clone https://github.com/scaffold-eth/scaffold-eth-2.git</p>
+              {cloneCommandCopied ? (
+                <CheckCircleIcon
+                  className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
+                  aria-hidden="true"
+                />
               ) : (
-                <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 cursor-pointer" aria-hidden="true" />
+                <DocumentDuplicateIcon
+                  className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
+                  aria-hidden="true"
+                />
               )}
             </div>
           </CopyToClipboard>
+          <div className="flex items-center gap-2 mx-2">
+            <CopyToClipboard
+              text={"npx create-eth@latest"}
+              onCopy={() => {
+                setNpxCommandCopied(true);
+                setTimeout(() => {
+                  setNpxCommandCopied(false);
+                }, 800);
+              }}
+            >
+              <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
+                <p className="m-0">npx create-eth@latest</p>
+                {npxCommandCopied ? (
+                  <CheckCircleIcon
+                    className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <DocumentDuplicateIcon
+                    className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                )}
+              </div>
+            </CopyToClipboard>
+            <div className="badge badge-neutral">Beta</div>
+          </div>
+
           <div className="flex flex-wrap gap-4 items-center justify-center">
             <a
               href="https://scaffold-eth-2-docs.vercel.app/"
@@ -54,7 +89,7 @@ const Home: NextPage = () => {
               className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
               rel="noreferrer"
             >
-              Documentation
+              Docs
             </a>
             <a
               href="https://github.com/scaffold-eth/scaffold-eth-2"
@@ -62,7 +97,7 @@ const Home: NextPage = () => {
               className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
               rel="noreferrer"
             >
-              <span>View on Github</span>
+              <span>Github</span>
               <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
             </a>
           </div>
