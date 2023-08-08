@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           </div>
           <p className="text-3xl m-0 font-medium mt-1">Scaffold-ETH 2</p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-8 mb-14">
+        <div className="flex flex-col justify-center items-center gap-8 mb-14 px-4">
           <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
             Everything you need to build dApps on Ethereum
           </h1>
@@ -39,8 +39,10 @@ const Home: NextPage = () => {
               }, 800);
             }}
           >
-            <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
-              <p className="m-0">git clone https://github.com/scaffold-eth/scaffold-eth-2.git</p>
+            <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 -mb-6">
+              <p className="m-0 text-center text-sm sm:text-base">
+                git clone https://github.com/scaffold-eth/scaffold-eth-2.git
+              </p>
               {cloneCommandCopied ? (
                 <CheckCircleIcon
                   className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
@@ -54,7 +56,8 @@ const Home: NextPage = () => {
               )}
             </div>
           </CopyToClipboard>
-          <div className="flex items-center gap-2 mx-2">
+          <div className="divider px-6 sm:px-20">OR</div>
+          <div className="flex items-center gap-2 mx-2 -mt-6">
             <CopyToClipboard
               text={"npx create-eth@latest"}
               onCopy={() => {
@@ -64,8 +67,8 @@ const Home: NextPage = () => {
                 }, 800);
               }}
             >
-              <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-5 py-1 gap-2">
-                <p className="m-0">npx create-eth@latest</p>
+              <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
+                <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
                 {npxCommandCopied ? (
                   <CheckCircleIcon
                     className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
