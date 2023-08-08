@@ -30,59 +30,61 @@ const Home: NextPage = () => {
             A modern, clean version of Scaffold-ETH with RainbowKit, NextJS and Typescript. Supports Hardhat and
             Foundry.
           </p>
-          <CopyToClipboard
-            text={"git clone https://github.com/scaffold-eth/scaffold-eth-2.git"}
-            onCopy={() => {
-              setCloneCommandCopied(true);
-              setTimeout(() => {
-                setCloneCommandCopied(false);
-              }, 800);
-            }}
-          >
-            <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 -mb-6">
-              <p className="m-0 text-center text-sm sm:text-base">
-                git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-              </p>
-              {cloneCommandCopied ? (
-                <CheckCircleIcon
-                  className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                  aria-hidden="true"
-                />
-              ) : (
-                <DocumentDuplicateIcon
-                  className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                  aria-hidden="true"
-                />
-              )}
-            </div>
-          </CopyToClipboard>
-          <div className="divider px-6 sm:px-20">OR</div>
-          <div className="flex items-center gap-2 mx-2 -mt-6">
+          <div className="flex flex-col gap-5 items-center mb-2">
             <CopyToClipboard
-              text={"npx create-eth@latest"}
+              text={"git clone https://github.com/scaffold-eth/scaffold-eth-2.git"}
               onCopy={() => {
-                setNpxCommandCopied(true);
+                setCloneCommandCopied(true);
                 setTimeout(() => {
-                  setNpxCommandCopied(false);
+                  setCloneCommandCopied(false);
                 }, 800);
               }}
             >
-              <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
-                <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
-                {npxCommandCopied ? (
+              <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
+                <p className="m-0 text-center text-sm sm:text-base">
+                  git clone https://github.com/scaffold-eth/scaffold-eth-2.git
+                </p>
+                {cloneCommandCopied ? (
                   <CheckCircleIcon
-                    className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                    className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
                     aria-hidden="true"
                   />
                 ) : (
                   <DocumentDuplicateIcon
-                    className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                    className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
                     aria-hidden="true"
                   />
                 )}
               </div>
             </CopyToClipboard>
-            <div className="badge badge-neutral">Beta</div>
+            <div className="divider px-6 sm:px-20 m-0">OR</div>
+            <div className="flex items-center gap-2 mx-2">
+              <CopyToClipboard
+                text={"npx create-eth@latest"}
+                onCopy={() => {
+                  setNpxCommandCopied(true);
+                  setTimeout(() => {
+                    setNpxCommandCopied(false);
+                  }, 800);
+                }}
+              >
+                <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
+                  <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
+                  {npxCommandCopied ? (
+                    <CheckCircleIcon
+                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <DocumentDuplicateIcon
+                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+              </CopyToClipboard>
+              <div className="badge badge-neutral">Beta</div>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-4 items-center justify-center">
