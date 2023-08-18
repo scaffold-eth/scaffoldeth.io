@@ -21,6 +21,7 @@ export const MetaHeader = ({
   children,
 }: MetaHeaderProps) => {
   const imageUrl = baseUrl + image;
+  const twitterImageUrl = baseUrl + "twitterThumbnail.jpg";
 
   return (
     <Head>
@@ -41,7 +42,7 @@ export const MetaHeader = ({
       {image && (
         <>
           <meta property="og:image" content={imageUrl} />
-          <meta name="twitter:image" content={imageUrl} />
+          <meta name="twitter:image" content={twitterImageUrl} />
         </>
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}

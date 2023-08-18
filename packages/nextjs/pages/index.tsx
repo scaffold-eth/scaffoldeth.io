@@ -89,7 +89,7 @@ const Home: NextPage = () => {
 
           <div className="flex flex-wrap gap-4 items-center justify-center">
             <a
-              href="https://scaffold-eth-2-docs.vercel.app/"
+              href="https://docs.scaffoldeth.io/"
               target="_blank"
               className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
               rel="noreferrer"
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
       <div className="bg-base-300/20">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
               <Image src="/assets/debugLogo.svg" alt="debug icon" height={30} width={30} />
               <p className="text-center lg:text-left text-xl m-0 font-light">DEBUG CONTRACTS</p>
             </div>
@@ -141,7 +141,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="space-y-6 flex flex-col items-center lg:items-end">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4 pt-4 lg:pt-0">
               <Image src="/assets/sparkles.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">COMPONENTS</p>
             </div>
@@ -181,7 +181,7 @@ const Home: NextPage = () => {
       <div className="bg-base-200">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
             </div>
@@ -194,7 +194,7 @@ const Home: NextPage = () => {
               built-in Block Explorer, you can check the transaction details from your dapp while tinkering with it.
             </p>
           </div>
-          <div className="max-w-[400px] lg:max-w-none">
+          <div className="max-w-[400px] lg:max-w-none pt-4 lg:pt-0">
             <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
           </div>
         </div>
