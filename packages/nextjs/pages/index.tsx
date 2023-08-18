@@ -27,7 +27,7 @@ const Home: NextPage = () => {
             Everything you need to build dApps on Ethereum
           </h1>
           <p className="m-0 text-center max-w-xl px-3">
-            A modern, clean version of Scaffold-ETH with RainbowKit, NextJS and Typescript. Supports Hardhat and
+            A modern, clean version of Scaffold-ETH with NextJS, RainbowKit, Wagmi and Typescript. Supports Hardhat and
             Foundry.
           </p>
           <div className="flex flex-col gap-5 items-center mb-2">
