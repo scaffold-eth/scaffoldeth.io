@@ -83,7 +83,7 @@ const Home: NextPage = () => {
                   )}
                 </div>
               </CopyToClipboard>
-              <div className="badge badge-neutral">Beta</div>
+              <div className="badge badge-warning">Beta</div>
             </div>
           </div>
 
