@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
@@ -196,6 +197,28 @@ const Home: NextPage = () => {
           </div>
           <div className="max-w-[400px] lg:max-w-none pt-4 lg:pt-0">
             <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
+          </div>
+        </div>
+      </div>
+
+      {/* Hooks and Utils */}
+      <div className="bg-base-300/60">
+        <div className="container max-w-[80%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pl-8 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-28">
+          <HooksExample />
+          <div className="space-y-6 flex-shrink lg:w-2/3 lg:self-start lg:mt-14">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+              <Image src="/assets/atom.svg" alt="debug icon" height={40} width={40} />
+              <p className="text-center lg:text-left text-xl m-0 font-light">HOOKS AND UTILS</p>
+            </div>
+
+            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+              Custom React <br /> hooks and utils
+            </h2>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
+              Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around
+              wagmi, offering an easy-to-use interface for reading from, writing to, and monitoring events emitted by
+              your smart contracts.
+            </p>
           </div>
         </div>
       </div>
