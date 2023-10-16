@@ -146,7 +146,7 @@ const Home: NextPage = () => {
               <Image src="/assets/sparkles.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">COMPONENTS</p>
             </div>
-            <div className="lg:w-3/4">
+            <div className="lg:w-3/4 space-y-5">
               <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
                 Common web3 components in tailwind and daisy UI
               </h2>
@@ -156,6 +156,28 @@ const Home: NextPage = () => {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Hooks and Utils */}
+      <div className="bg-base-200">
+        <div className="container max-w-[80%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-28">
+          <div className="space-y-6 flex-shrink lg:w-2/3 lg:self-start lg:mt-14">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+              <Image src="/assets/atom.svg" alt="debug icon" height={40} width={40} />
+              <p className="text-center lg:text-left text-xl m-0 font-light">HOOKS AND UTILS</p>
+            </div>
+
+            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+              Custom React <br /> hooks and utils
+            </h2>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
+              Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around
+              wagmi, offering an easy-to-use interface for reading from, writing to, and monitoring events emitted by
+              your smart contracts.
+            </p>
+          </div>
+          <HooksExample />
         </div>
       </div>
 
@@ -180,45 +202,27 @@ const Home: NextPage = () => {
 
       {/* Block Explorer */}
       <div className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
-          <div className="space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pt-28 lg:pl-4  flex flex-col justify-between items-center lg:flex-row lg:items-start gap-5 lg:gap-0">
+          <div className="flex flex-col items-center">
+            <div className="max-w-[400px] lg:max-w-none">
+              <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
+            </div>
+          </div>
+
+          <div className="space-y-6 flex flex-col items-center lg:pl-16 lg:pt-4">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4 pt-4 lg:pt-0">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
             </div>
-
-            <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
-              Built-in Block Explorer to check transaction data easily during your tests
-            </h2>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
-              Review transaction data from your local tests to make sure everything is working as expected. With our
-              built-in Block Explorer, you can check the transaction details from your dapp while tinkering with it.
-            </p>
-          </div>
-          <div className="max-w-[400px] lg:max-w-none pt-4 lg:pt-0">
-            <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
-          </div>
-        </div>
-      </div>
-
-      {/* Hooks and Utils */}
-      <div className="bg-base-300/60">
-        <div className="container max-w-[80%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pl-8 lg:pt-28 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-28">
-          <HooksExample />
-          <div className="space-y-6 flex-shrink lg:w-2/3 lg:self-start lg:mt-14">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
-              <Image src="/assets/atom.svg" alt="debug icon" height={40} width={40} />
-              <p className="text-center lg:text-left text-xl m-0 font-light">HOOKS AND UTILS</p>
+            <div className="lg:w-3/4 space-y-6">
+              <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+                Built-in Block Explorer to check transaction data easily during your tests
+              </h2>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+                Review transaction data from your local tests to make sure everything is working as expected. With our
+                built-in Block Explorer, you can check the transaction details from your dapp while tinkering with it.
+              </p>
             </div>
-
-            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
-              Custom React <br /> hooks and utils
-            </h2>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
-              Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around
-              wagmi, offering an easy-to-use interface for reading from, writing to, and monitoring events emitted by
-              your smart contracts.
-            </p>
           </div>
         </div>
       </div>
