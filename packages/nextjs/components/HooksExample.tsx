@@ -13,7 +13,7 @@ const Purple = ({ children }: { children: ReactNode }) => {
 export const HooksExample = () => {
   return (
     <div className="w-full flex-grow  bg-white rounded-2xl p-6 drop-shadow-[0px_0px_10px_rgba(139,178,241,0.50)]">
-      <div className="bg-base-300/40 w-full h-full border border-primary rounded-3xl p-6 text-sm  font-mono">
+      <div className="bg-base-300/40 w-full h-full border border-primary rounded-3xl p-4 lg:p-6 text-xs lg:text-sm  font-mono overflow-x-scroll whitespace-nowrap  lg:overflow-auto lg:whitespace-normal">
         <p className="my-3">
           <Red>import</Red>
           {" { "} useScaffoldContractWrite {" } "}
@@ -50,8 +50,8 @@ export const HooksExample = () => {
           {"}"});
         </p>
         <p className="text-gray-400 my-3">
-          {"//"} To send the transaction, you can call the writeAsync function returned by the hook. Here&apos;s an
-          example usage:
+          {"//"} To send the transaction, you can call the writeAsync function <br className="lg:hidden" /> returned by
+          the hook. Here&apos;s an example usage:
         </p>
         <p className="my-3">
           <Red>{"<"}button</Red> className=&quot;<Cyan>btn btn-primary</Cyan>&quot; onClick<Cyan>=</Cyan>
