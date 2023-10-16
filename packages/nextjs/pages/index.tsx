@@ -173,8 +173,8 @@ const Home: NextPage = () => {
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
               Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around
-              wagmi, offering an easy-to-use interface for reading from, writing to, and monitoring events emitted by
-              your smart contracts.
+              wagmi, an easy-to-use interface with typescript autocompletions for reading from, writing to, and
+              monitoring events emitted by your smart contracts
             </p>
           </div>
           <HooksExample />
