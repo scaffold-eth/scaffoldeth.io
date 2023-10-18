@@ -169,12 +169,12 @@ const Home: NextPage = () => {
             </div>
 
             <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
-              Custom React <br /> hooks and utils
+              Custom Wagmi <br /> hooks and utils
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
-              Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around
-              wagmi, an easy-to-use interface with typescript autocompletions for reading from, writing to, and
-              monitoring events emitted by your smart contracts
+              Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around{" "}
+              <span className="italic">Wagmi</span>, an easy-to-use interface with typescript autocompletions for
+              reading from, writing to, and monitoring events emitted by your smart contracts.
             </p>
           </div>
           <HooksExample />
