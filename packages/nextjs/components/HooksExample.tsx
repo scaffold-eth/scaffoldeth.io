@@ -17,7 +17,7 @@ export const HooksExample = () => {
         <p className="my-3">
           <Red>import</Red>
           {" { "} useScaffoldContractWrite {" } "}
-          <Red>from</Red> <Cyan>&quot; ~~/hooks/scaffold-eth &quot;</Cyan>;
+          <Red>from</Red> <Cyan>&quot;~~/hooks/scaffold-eth&quot;</Cyan>;
         </p>
 
         <p className="my-3">
