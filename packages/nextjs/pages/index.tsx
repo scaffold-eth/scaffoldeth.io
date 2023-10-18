@@ -202,14 +202,14 @@ const Home: NextPage = () => {
 
       {/* Block Explorer */}
       <div className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pt-28 lg:pl-4  flex flex-col justify-between items-center lg:flex-row lg:items-start gap-5 lg:gap-0">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pt-28 lg:pl-4  flex flex-col justify-between items-center lg:flex-row lg:items-center gap-5 lg:gap-0">
           <div className="flex flex-col items-center">
             <div className="max-w-[400px] lg:max-w-none">
               <Image src="/assets/se2BlockExplorer.png" alt="Block Explorer" width={1400} height={1400} />
             </div>
           </div>
 
-          <div className="space-y-6 flex flex-col items-center lg:pl-16 lg:pt-4">
+          <div className="space-y-6 flex flex-col items-center lg:pl-16">
             <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4 pt-4 lg:pt-0">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
