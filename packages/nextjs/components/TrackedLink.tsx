@@ -11,7 +11,6 @@ type TrackedLinkProps = {
 // Track external clicks on links using plausible
 export default function TrackedLink({ id, href, className, children }: TrackedLinkProps) {
   const plausible = usePlausible();
-  console.log(id);
 
   return (
     <a
