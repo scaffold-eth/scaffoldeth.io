@@ -153,7 +153,7 @@ const Home: NextPage = () => {
                 Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
                 daisyUI to style your dapp and give it a modern and appealing design.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 underline">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
                   Check out all the components
                 </TrackedLink>
@@ -180,7 +180,7 @@ const Home: NextPage = () => {
               <span className="italic">Wagmi</span>, an easy-to-use interface with typescript autocompletions for
               reading from, writing to, and monitoring events emitted by your smart contracts.
             </p>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 underline">
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
               <TrackedLink id="Hooks" href="https://docs.scaffoldeth.io/hooks/">
                 Check out all the available hooks
               </TrackedLink>
