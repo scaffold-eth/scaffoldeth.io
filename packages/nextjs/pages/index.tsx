@@ -5,6 +5,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
+import TrackedLink from "~~/components/TrackedLink";
 
 const Home: NextPage = () => {
   const [cloneCommandCopied, setCloneCommandCopied] = useState(false);
@@ -89,23 +90,21 @@ const Home: NextPage = () => {
           </div>
 
           <div className="flex flex-wrap gap-4 items-center justify-center">
-            <a
+            <TrackedLink
+              id="Docs"
               href="https://docs.scaffoldeth.io/"
-              target="_blank"
               className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-              rel="noreferrer"
             >
               Docs
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
+              id="Github"
               href="https://github.com/scaffold-eth/scaffold-eth-2"
-              target="_blank"
               className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
-              rel="noreferrer"
             >
-              <span>Github</span>
+              Github
               <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </div>
@@ -154,6 +153,11 @@ const Home: NextPage = () => {
                 Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
                 daisyUI to style your dapp and give it a modern and appealing design.
               </p>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 underline">
+                <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
+                  Check out all the available components
+                </TrackedLink>
+              </p>
             </div>
           </div>
         </div>
@@ -176,6 +180,11 @@ const Home: NextPage = () => {
               <span className="italic">Wagmi</span>, an easy-to-use interface with typescript autocompletions for
               reading from, writing to, and monitoring events emitted by your smart contracts.
             </p>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 underline">
+              <TrackedLink id="Hooks" href="https://docs.scaffoldeth.io/hooks/">
+                Check out all the available hooks
+              </TrackedLink>
+            </p>
           </div>
           <HooksExample />
         </div>
@@ -189,14 +198,13 @@ const Home: NextPage = () => {
             You can build and learn together with the BuidlGuidl community, joining over 800 members in creating
             products, prototypes, and tutorials to enrich the web3 ecosystem.
           </p>
-          <a
+          <TrackedLink
+            id="BuidlGuidl"
             href="https://buidlguidl.com"
-            target="_blank"
             className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-            rel="noreferrer"
           >
             Learn More
-          </a>
+          </TrackedLink>
         </div>
       </div>
 
