@@ -155,7 +155,7 @@ const Home: NextPage = () => {
               </p>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 underline">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
-                  Check out all the available components
+                  Check out all the components
                 </TrackedLink>
               </p>
             </div>
