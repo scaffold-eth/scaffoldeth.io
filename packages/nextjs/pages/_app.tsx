@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
+import PlausibleProvider from "next-plausible";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
 import { WagmiConfig } from "wagmi";
@@ -12,16 +13,18 @@ import "~~/styles/globals.css";
 
 const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <NextNProgress />
-      <RainbowKitProvider chains={appChains.chains} avatar={BlockieAvatar} theme={lightTheme()}>
-        <main className="font-space-grotesk">
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-        <Toaster />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <PlausibleProvider domain="scaffoldeth.io">
+      <WagmiConfig config={wagmiConfig}>
+        <NextNProgress />
+        <RainbowKitProvider chains={appChains.chains} avatar={BlockieAvatar} theme={lightTheme()}>
+          <main className="font-space-grotesk">
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+          <Toaster />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </PlausibleProvider>
   );
 };
 
