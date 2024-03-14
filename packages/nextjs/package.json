@@ -20,8 +20,6 @@
     "@uniswap/sdk-core": "^4.0.1",
     "@uniswap/v2-sdk": "^3.0.1",
     "daisyui": "^2.31.0",
-    "frog": "^0.6.3",
-    "hono": "^4",
     "next": "^14.1.0",
     "next-plausible": "^3.10.1",
     "nextjs-progressbar": "^0.0.16",
