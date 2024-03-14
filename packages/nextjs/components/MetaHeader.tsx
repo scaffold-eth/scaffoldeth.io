@@ -21,7 +21,7 @@ export const MetaHeader = ({
   children,
 }: MetaHeaderProps) => {
   const imageUrl = baseUrl + image;
-  const twitterImageUrl = baseUrl + "twitterThumbnail.jpg";
+  const twitterImageUrl = baseUrl + "twitterThumbnail.png";
 
   return (
     <Head>
