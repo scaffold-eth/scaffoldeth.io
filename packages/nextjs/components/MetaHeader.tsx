@@ -56,7 +56,7 @@ export const MetaHeader = ({
           <meta property="fc:frame:button:2:target" content="https://docs.scaffoldeth.io/" />
 
           <meta property="fc:frame:button:3" content="Features →" />
-          <meta property="fc:frame:post_url" content="https://scaffold-eth-frame.vercel.app/api" />
+          <meta property="fc:frame:post_url" content={`${baseUrl}api?id=1`} />
         </>
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
