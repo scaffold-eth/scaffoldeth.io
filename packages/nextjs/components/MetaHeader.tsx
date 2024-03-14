@@ -43,6 +43,20 @@ export const MetaHeader = ({
         <>
           <meta property="og:image" content={imageUrl} />
           <meta name="twitter:image" content={twitterImageUrl} />
+
+          <meta property="fc:frame" content="vNext" />
+          <meta property="fc:frame:image" content={imageUrl} />
+
+          <meta property="fc:frame:button:1" content="🛠️ GitHub" />
+          <meta property="fc:frame:button:1:action" content="link" />
+          <meta property="fc:frame:button:1:target" content="https://github.com/scaffold-eth/scaffold-eth-2" />
+
+          <meta property="fc:frame:button:2" content="📃 Docs" />
+          <meta property="fc:frame:button:2:action" content="link" />
+          <meta property="fc:frame:button:2:target" content="https://docs.scaffoldeth.io/" />
+
+          <meta property="fc:frame:button:3" content="Features →" />
+          <meta property="fc:frame:post_url" content="https://scaffold-eth-frame.vercel.app/api" />
         </>
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
