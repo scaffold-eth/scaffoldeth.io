@@ -14,46 +14,75 @@ export const HooksExample = () => {
       <div className="bg-base-300/40 w-full h-full border border-primary rounded-3xl p-4 lg:p-6 text-xs lg:text-sm  font-mono overflow-x-scroll whitespace-nowrap  lg:overflow-auto lg:whitespace-normal">
         <p className="my-3">
           <Red>import</Red>
-          {" { "} useScaffoldContractWrite {" } "}
+          {" { "} useScaffoldWriteContract {" } "}
           <Red>from</Red> <Cyan>&quot;~~/hooks/scaffold-eth&quot;</Cyan>;
         </p>
 
         <p className="my-3">
           <Red>const</Red>
-          {" { "}writeAsync, isLoading, isMining{" } "}
+          {" { "}writeContractAsync: writeYourContractAsync{" } "}
           <Cyan> = </Cyan>
-          <br />
-          <Purple>useScaffoldContractWrite</Purple>({"{"}
+          <Purple>useScaffoldWriteContract</Purple>(<Cyan dark>&quot;YourContract&quot;</Cyan>);
+        </p>
+
+        <p className="text-gray-400 my-3">
+          {"//"} To send the transaction, you can call the writeContractAsync <br className="lg:hidden" /> function
+          returned by the hook (instanced as writeYourContractAsync). <br className="lg:hidden" /> Here&apos;s an
+          example usage:
+        </p>
+
+        <p className="my-3">
+          <Red>{"<"}button</Red> className<Cyan>=&quot;btn btn-primary&quot;</Cyan> onClick<Cyan>=</Cyan>
+          {"{"}async () <Cyan>=&gt;</Cyan> {"{"}
           <br />
           <span className="inline-block ml-4">
-            <Cyan>contractName</Cyan>: <Cyan dark>&quot;YourContract&quot;</Cyan>,
-            <br />
-            <Cyan>functionName</Cyan>: <Cyan dark>&quot;setPurpose&quot;</Cyan>,
-            <br />
-            <Cyan>args</Cyan>: [<Cyan dark>&quot;The value to set&quot;</Cyan>],
-            <br />
-            <Cyan>blockConfirmation</Cyan>: <Cyan dark>1</Cyan>,
-            <br />
-            <Purple>onBlockConfirmation</Purple>: (txnReceipt) =&gt; {"{"}
+            try {"{"}
             <br />
             <span className="inline-block ml-4">
-              console.<Purple>log</Purple>(<Cyan>&quot;Transaction blockHash&quot;</Cyan>, &nbsp;txnReceipt.
-              <Cyan>blockHash</Cyan>
+              await writeYourContractAsync(
+              <br />
+              <span className="inline-block ml-4">
+                {"{"}
+                <br />
+                <span className="inline-block ml-4">
+                  <Cyan>functionName</Cyan>: <Cyan dark>&quot;setPurpose&quot;</Cyan>,
+                  <br />
+                  <Cyan>args</Cyan>: [<Cyan dark>&quot;The value to set&quot;</Cyan>],
+                </span>
+                <br />
+                {"}"},
+                <br />
+                {"{"}
+                <br />
+                <span className="inline-block ml-4">
+                  <Cyan>blockConfirmations</Cyan>: <Cyan dark>1</Cyan>,
+                  <br />
+                  <Purple>onBlockConfirmation</Purple>: txnReceipt <Cyan>=&gt;</Cyan> {"{"}
+                  <br />
+                  <span className="inline-block ml-4">
+                    console.<Purple>log</Purple>(<Cyan>&quot;📦 Transaction blockHash&quot;</Cyan>, &nbsp;txnReceipt.
+                    <Cyan>blockHash</Cyan>);
+                  </span>
+                  <br />
+                  {"}"}
+                </span>
+                <br />
+                {"}"}
+              </span>
+              <br />
               );
+            </span>
+            <br />
+            {"}"} catch (e) {"{"}
+            <br />
+            <span className="inline-block ml-4">
+              console.<Purple>error</Purple>(<Cyan>&quot;Error setting purpose:&quot;</Cyan>, e);
             </span>
             <br />
             {"}"}
           </span>
           <br />
-          {"}"});
-        </p>
-        <p className="text-gray-400 my-3">
-          {"//"} To send the transaction, you can call the writeAsync function <br className="lg:hidden" /> returned by
-          the hook. Here&apos;s an example usage:
-        </p>
-        <p className="my-3">
-          <Red>{"<"}button</Red> className<Cyan>=&quot;btn btn-primary&quot;</Cyan> onClick<Cyan>=</Cyan>
-          {"{"}() <Cyan>=&gt;</Cyan> writeAsync(){"}"}
+          {"}"}
           <Red>{">"}</Red>
           <br />
           <span className="inline-block ml-4">Send Tx</span>
