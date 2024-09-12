@@ -10,6 +10,7 @@ import TrackedLink from "~~/components/TrackedLink";
 const Home: NextPage = () => {
   const [cloneCommandCopied, setCloneCommandCopied] = useState(false);
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
+  const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
   return (
     <>
       <MetaHeader />
@@ -163,8 +164,92 @@ const Home: NextPage = () => {
         </div>
       </div>
 
+      {/* Extensions Section */}
+      <div className="bg-base-300/20">
+        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
+          {/* Video container - now first in the flex layout */}
+          <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-8">
+            <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src="https://www.youtube.com/embed/XQCv533XGZk"
+                  title="Scaffold-ETH 2 Extensions Introduction"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          {/* Text content - now second in the flex layout */}
+          <div className="w-full lg:w-2/5 lg:order-1 space-y-6">
+            <div className="flex items-center justify-center lg:justify-start gap-2 pt-4 lg:pt-0">
+              <span className="text-2xl">🔌</span> {/* TODO Change Emoji icon for custom icon*/}
+              <p className="text-center lg:text-left text-xl m-0 font-light">EXTENSIONS</p>
+            </div>
+            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+              Modular add-ons for your initial project setup
+            </h2>
+            <div className="space-y-4">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+                Extensions are modular add-ons for Scaffold-ETH 2 that provide additional functionality or serve as
+                examples for specific features.
+              </p>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+                They offer seamless integration with the base project, enabling quick addition of new features, pages,
+                contracts, or components during initial project setup.
+              </p>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+                They serve as starting points for your project, not finished products, and maintain compatibility with
+                Scaffold-ETH 2 core updates and improvements.
+              </p>
+            </div>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">Example usage:</p>
+            <div className="w-full max-w-[450px] mx-auto lg:mx-0">
+              <CopyToClipboard
+                text="npx create-eth@latest -e gitHubUsername/repoName"
+                onCopy={() => {
+                  setExtensionCommandCopied(true);
+                  setTimeout(() => {
+                    setExtensionCommandCopied(false);
+                  }, 800);
+                }}
+              >
+                <div className="flex items-center justify-between border-2 border-gray-300 rounded-xl px-3 py-2 text-xs sm:text-sm">
+                  <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
+                  {extensionCommandCopied ? (
+                    <CheckCircleIcon className="h-5 w-5 flex-shrink-0 cursor-pointer" aria-hidden="true" />
+                  ) : (
+                    <DocumentDuplicateIcon className="h-5 w-5 flex-shrink-0 cursor-pointer" aria-hidden="true" />
+                  )}
+                </div>
+              </CopyToClipboard>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Buidl in Community */}
+      <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
+        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
+          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
+          <p className="text-center m-0">
+            You can build and learn together with the BuidlGuidl community, joining over 800 members in creating
+            products, prototypes, and tutorials to enrich the web3 ecosystem.
+          </p>
+          <TrackedLink
+            id="BuidlGuidl"
+            href="https://buidlguidl.com"
+            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
+          >
+            Learn More
+          </TrackedLink>
+        </div>
+      </div>
+
       {/* Hooks and Utils */}
-      <div className="bg-base-200">
+      <div className="bg-base-200 pt-12">
         <div className="container max-w-[80%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-28">
           <div className="space-y-6 flex-shrink lg:w-2/3 lg:self-start lg:mt-14">
             <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
@@ -190,26 +275,8 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      {/* Buidl in Community */}
-      <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
-        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
-          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
-          <p className="text-center m-0">
-            You can build and learn together with the BuidlGuidl community, joining over 800 members in creating
-            products, prototypes, and tutorials to enrich the web3 ecosystem.
-          </p>
-          <TrackedLink
-            id="BuidlGuidl"
-            href="https://buidlguidl.com"
-            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-          >
-            Learn More
-          </TrackedLink>
-        </div>
-      </div>
-
       {/* Block Explorer */}
-      <div className="bg-base-200">
+      <div className="bg-base-300/60">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-24 lg:pb-20 lg:pt-28 lg:pl-4  flex flex-col justify-between items-center lg:flex-row gap-5 lg:gap-0">
           <div className="flex flex-col items-center">
             <div className="max-w-[400px] lg:max-w-none">
