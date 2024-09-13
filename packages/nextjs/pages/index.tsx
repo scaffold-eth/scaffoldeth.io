@@ -222,9 +222,15 @@ const Home: NextPage = () => {
                 <div className="flex items-center justify-between border-2 border-gray-300 rounded-xl px-3 py-2 text-xs sm:text-sm">
                   <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
                   {extensionCommandCopied ? (
-                    <CheckCircleIcon className="h-5 w-5 flex-shrink-0 cursor-pointer" aria-hidden="true" />
+                    <CheckCircleIcon
+                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
+                      aria-hidden="true"
+                    />
                   ) : (
-                    <DocumentDuplicateIcon className="h-5 w-5 flex-shrink-0 cursor-pointer" aria-hidden="true" />
+                    <DocumentDuplicateIcon
+                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
+                      aria-hidden="true"
+                    />
                   )}
                 </div>
               </CopyToClipboard>
