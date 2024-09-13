@@ -165,10 +165,9 @@ const Home: NextPage = () => {
       </div>
 
       {/* Extensions Section */}
-      <div className="bg-base-300/20">
+      <div className="bg-base-200">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
-          {/* Video container - now first in the flex layout */}
-          <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-8">
+          <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-24">
             <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
@@ -182,7 +181,6 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          {/* Text content - now second in the flex layout */}
           <div className="w-full lg:w-2/5 lg:order-1 space-y-6">
             <div className="flex items-center justify-center lg:justify-start gap-2 pt-4 lg:pt-0">
               <span className="text-2xl">🔌</span> {/* TODO Change Emoji icon for custom icon*/}
@@ -194,7 +192,7 @@ const Home: NextPage = () => {
             <div className="space-y-4">
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
                 Extensions are modular add-ons for Scaffold-ETH 2 that provide additional functionality or serve as
-                examples for specific features.
+                starter-kits for specific features.
               </p>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
                 They offer seamless integration with the base project, enabling quick addition of new features, pages,
@@ -205,7 +203,12 @@ const Home: NextPage = () => {
                 Scaffold-ETH 2 core updates and improvements.
               </p>
             </div>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">Example usage:</p>
+            <p
+              className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none"
+              style={{ marginBottom: "-1rem" }}
+            >
+              Example usage:
+            </p>
             <div className="w-full max-w-[450px] mx-auto lg:mx-0">
               <CopyToClipboard
                 text="npx create-eth@latest -e gitHubUsername/repoName"
@@ -226,6 +229,11 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
+              <TrackedLink id="Extensions" href="https://docs.scaffoldeth.io/extensions/">
+                Learn more about extensions
+              </TrackedLink>
+            </p>
           </div>
         </div>
       </div>
