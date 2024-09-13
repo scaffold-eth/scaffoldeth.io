@@ -182,7 +182,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="w-full lg:w-2/5 lg:order-1 space-y-6">
-            <div className="flex items-center justify-center lg:justify-start gap-2 pt-4 lg:pt-0">
+            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
               <span className="text-2xl">🔌</span> {/* TODO Change Emoji icon for custom icon*/}
               <p className="text-center lg:text-left text-xl m-0 font-light">EXTENSIONS</p>
             </div>
