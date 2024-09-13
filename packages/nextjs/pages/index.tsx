@@ -118,11 +118,10 @@ const Home: NextPage = () => {
               <Image src="/assets/debugLogo.svg" alt="debug icon" height={30} width={30} />
               <p className="text-center lg:text-left text-xl m-0 font-light">DEBUG CONTRACTS</p>
             </div>
-
-            <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
+            <h2 className="text-2xl lg:text-4xl md:w-3/5 lg:w-4/5 lg:max-w-none mx-auto text-center lg:text-left lg:mx-0 font-medium">
               Experiment with Solidity using a frontend that adapts to your smart contract
             </h2>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
               Debug and refine your smart contracts with a live-updating frontend. Scaffold-ETH 2 is an ideal stack for
               progressing from rapid prototyping to production-grade dApps.
             </p>
@@ -146,15 +145,15 @@ const Home: NextPage = () => {
               <Image src="/assets/sparkles.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">COMPONENTS</p>
             </div>
-            <div className="lg:w-3/4 space-y-5">
+            <div className="md:w-3/4 lg:max-w-none space-y-5">
               <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
                 Common web3 components in tailwind and daisy UI
               </h2>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
                 Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
                 daisyUI to style your dapp and give it a modern and appealing design.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6 link">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
                   Check out all the components
                 </TrackedLink>
@@ -189,22 +188,22 @@ const Home: NextPage = () => {
             <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
               Modular add-ons for your initial project setup
             </h2>
-            <div className="space-y-4">
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+            <div className="text-center lg:text-left space-y-4 max-w-[450px] md:max-w-[600px] lg:max-w-none m-auto lg:mx-0 md:px-12 lg:px-0">
+              <p>
                 Extensions are modular add-ons for Scaffold-ETH 2 that provide additional functionality or serve as
                 starter-kits for specific features.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+              <p>
                 They offer seamless integration with the base project, enabling quick addition of new features, pages,
                 contracts, or components during initial project setup.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none">
+              <p>
                 They serve as starting points for your project, not finished products, and maintain compatibility with
                 Scaffold-ETH 2 core updates and improvements.
               </p>
             </div>
             <p
-              className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none"
+              className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none"
               style={{ marginBottom: "-1rem" }}
             >
               Example usage:
@@ -235,7 +234,7 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
               <TrackedLink id="Extensions" href="https://docs.scaffoldeth.io/extensions/">
                 Learn more about extensions
               </TrackedLink>
@@ -274,12 +273,12 @@ const Home: NextPage = () => {
             <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
               Custom Wagmi <br /> hooks and utils
             </h2>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6">
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6">
               Designed to simplify interactions with your deployed smart contracts. These hooks are wrappers around{" "}
               <span className="italic">Wagmi</span>, an easy-to-use interface with typescript autocompletions for
               reading from, writing to, and monitoring events emitted by your smart contracts.
             </p>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:pr-6 link">
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6 link">
               <TrackedLink id="Hooks" href="https://docs.scaffoldeth.io/hooks/">
                 Check out all the available hooks
               </TrackedLink>
@@ -303,11 +302,11 @@ const Home: NextPage = () => {
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
               <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
             </div>
-            <div className="lg:w-3/4 space-y-6">
+            <div className="md:w-3/4 lg:max-w-none space-y-6">
               <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
                 Built-in Block Explorer to check transaction data easily during your tests
               </h2>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[300px] lg:max-w-none lg:w-3/4">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
                 Review transaction data from your local tests to make sure everything is working as expected. With our
                 built-in Block Explorer, you can check the transaction details from your dapp while tinkering with it.
               </p>
