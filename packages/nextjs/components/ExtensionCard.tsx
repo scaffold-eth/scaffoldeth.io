@@ -24,12 +24,11 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
       setCommandCopied(false);
     }, 800);
 
-    // Determine the GitHub repo identifier
     const githubRepo = isCurated
       ? `Curated/${extension.name}`
       : extension.github.split("github.com/")[1] || extension.github;
 
-    // Track the event with GitHub identifier as a prop
+    // Track the click event with GitHub repo as a prop
     plausible("extensionCopyClick", { props: { id: githubRepo } });
   };
 

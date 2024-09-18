@@ -96,6 +96,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
   );
 };
 
+// get third party extensions from buidlguidl app (builds with "extension" type)
 export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
   try {
     const response = await fetch("https://buidlguidl-v3.ew.r.appspot.com/builds?type=extension");
