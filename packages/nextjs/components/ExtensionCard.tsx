@@ -72,12 +72,12 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           )}
         </div>
         <p
+          className="overflow-hidden"
+          // line-clamp-5 is not working, this is a workaround
           style={{
             display: "-webkit-box",
-            WebkitLineClamp: 5,
             WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
+            maxHeight: "7.5em", // Assumes default line height, adjust if needed
           }}
         >
           {extension.description}
