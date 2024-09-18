@@ -41,7 +41,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
         title="Extensions List | Scaffold-ETH 2"
         description="List of available extensions for Scaffold-ETH 2"
       />
-      <div className="container mx-auto p-4 min-h-screen -mb-16 flex flex-col">
+      <div className="container mx-auto p-4 min-h-screen flex flex-col -mb-16">
         {/* Header section */}
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="flex items-center gap-2">
@@ -76,7 +76,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
         {/* Combined extensions list */}
         <div className="flex-grow">
           {filteredExtensions.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
               {filteredExtensions.map((extension, index) => (
                 <ExtensionCard
                   key={index}
@@ -87,7 +87,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
             </div>
           ) : (
             <div className="flex items-center justify-center flex-grow">
-              <p className="text-center text-lg">No extensions found matching your search.</p>
+              <p className="text-center text-lg font-light">- No extensions found matching your search -</p>
             </div>
           )}
         </div>
