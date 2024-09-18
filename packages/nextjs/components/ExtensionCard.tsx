@@ -41,12 +41,18 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           <div className="flex items-center gap-2">
             {extension.github && (
               <a href={extension.github} className="inline-block" target="_blank" rel="noopener noreferrer">
-                <img alt="github icon" className="w-6 h-6" src="/icon-github.svg" />
+                {
+                  // eslint-disable-next-line
+                  <img alt="github icon" className="w-6 h-6" src="/icon-github.svg" />
+                }
               </a>
             )}
             {extension.youtube && (
               <a href={extension.youtube} className="inline-block" target="_blank" rel="noopener noreferrer">
-                <img alt="youtube icon" className="w-6 h-6" src="/icon-youtube.svg" />
+                {
+                  // eslint-disable-next-line
+                  <img alt="youtube icon" className="w-6 h-6" src="/icon-youtube.svg" />
+                }
               </a>
             )}
           </div>

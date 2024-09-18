@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { GetStaticProps, NextPage } from "next";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
 import curatedExtensions from "~~/extensions.json";
@@ -20,13 +22,26 @@ interface ExtensionsListProps {
 }
 
 const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const allExtensions = [...curatedExtensions.curated, ...thirdPartyExtensions];
+
+  const filteredExtensions = allExtensions.filter(extension => {
+    if (searchQuery.length < 3) return true;
+    const lowerCaseSearch = searchQuery.toLowerCase();
+    return (
+      extension.name.toLowerCase().includes(lowerCaseSearch) ||
+      extension.description.toLowerCase().includes(lowerCaseSearch)
+    );
+  });
+
   return (
     <>
       <MetaHeader
         title="Extensions List | Scaffold-ETH 2"
         description="List of available extensions for Scaffold-ETH 2"
       />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 min-h-screen -mb-16 flex flex-col">
         {/* Header section */}
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="flex items-center gap-2">
@@ -40,29 +55,42 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
           </Link>
         </div>
 
-        <h1 className="text-4xl font-bold pt-8 mb-4 text-center">Extensions List</h1>
-        <p className="text-lg mb-8 text-center max-w-4xl mx-auto">
-          Explore our Curated (by BuidlGuidl) and community-contributed extensions for Scaffold-ETH 2. <br></br> To
-          install an extension, simply copy and run the installation command provided for each extension.
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">Extensions List</h1>
+          <div className="relative w-full max-w-xs md:ml-8">
+            <input
+              type="text"
+              placeholder="Search extensions"
+              className="input input-bordered w-full pr-10 text-sm md:text-base"
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+            <MagnifyingGlassIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+          </div>
+        </div>
+        <p className="text-base md:text-lg mb-8 text-center max-w-4xl mx-auto">
+          Explore our Curated (by BuidlGuidl) and community-contributed extensions for Scaffold-ETH 2.{" "}
+          <br className="hidden md:inline"></br> To install an extension, simply copy and run the installation command
+          provided for each extension.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-6">Curated Extensions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {curatedExtensions.curated.map((extension, index) => (
-            <ExtensionCard key={index} extension={extension} isCurated={true} />
-          ))}
+        {/* Combined extensions list */}
+        <div className="flex-grow">
+          {filteredExtensions.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredExtensions.map((extension, index) => (
+                <ExtensionCard
+                  key={index}
+                  extension={extension}
+                  isCurated={curatedExtensions.curated.includes(extension)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center flex-grow">
+              <p className="text-center text-lg">No extensions found matching your search.</p>
+            </div>
+          )}
         </div>
-
-        <h2 className="text-2xl font-semibold mb-6">Third-Party Extensions</h2>
-        {thirdPartyExtensions.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {thirdPartyExtensions.map((extension, index) => (
-              <ExtensionCard key={index} extension={extension} isCurated={false} />
-            ))}
-          </div>
-        ) : (
-          <p>No third-party extensions available yet.</p>
-        )}
       </div>
     </>
   );
