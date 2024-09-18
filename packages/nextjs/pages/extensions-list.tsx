@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { NextPage } from "next";
-import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import type { GetStaticProps, NextPage } from "next";
+import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
-import { Address } from "~~/components/scaffold-eth";
 import curatedExtensions from "~~/extensions.json";
 
 type Extension = {
@@ -17,113 +15,11 @@ type Extension = {
   youtube?: string;
 };
 
-const ExtensionCard = ({ extension, isCurated }: { extension: Extension; isCurated: boolean }) => {
-  const [commandCopied, setCommandCopied] = useState(false);
+interface ExtensionsListProps {
+  thirdPartyExtensions: Extension[];
+}
 
-  return (
-    <div className="card bg-base-100 shadow-xl mb-8">
-      <div className="card-body">
-        <h2 className="card-title">
-          {extension.name}
-          {isCurated && <div className="badge badge-secondary ml-2">Curated</div>}
-        </h2>
-        <div className="flex justify-between items-start mb-2">
-          <div className="flex items-center gap-2">
-            {extension.github && (
-              <a href={extension.github} className="inline-block" target="_blank" rel="noopener noreferrer">
-                <img alt="github icon" className="w-6 h-6" src="/icon-github.svg" />
-              </a>
-            )}
-            {extension.youtube && (
-              <a href={extension.youtube} className="inline-block" target="_blank" rel="noopener noreferrer">
-                <img alt="youtube icon" className="w-6 h-6" src="/icon-youtube.svg" />
-              </a>
-            )}
-          </div>
-          <div>
-            <Address address={extension.builder} disableAddressLink />
-            {extension.coBuilders && extension.coBuilders.length > 0 && (
-              <div className="text-sm mt-2">
-                {extension.coBuilders.map((coBuilder, index) => (
-                  <Address key={index} address={coBuilder} disableAddressLink />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-        <p
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 5,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {extension.description}
-        </p>
-        {!isCurated && (
-          <div className="mt-2 text-sm text-yellow-600 bg-yellow-100 p-2 rounded">
-            ⚠️ 3rd-party extension. Verify the source before installing.
-          </div>
-        )}
-        <div className="card-actions justify-start mt-4">
-          <div
-            className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer"
-            onClick={() => {
-              navigator.clipboard.writeText(extension.installCommand);
-              setCommandCopied(true);
-              setTimeout(() => {
-                setCommandCopied(false);
-              }, 800);
-            }}
-          >
-            <p className="m-0 text-center text-sm sm:text-base">{extension.installCommand}</p>
-            {commandCopied ? (
-              <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-            ) : (
-              <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ExtensionsList: NextPage = () => {
-  const [thirdPartyExtensions, setThirdPartyExtensions] = useState<Extension[]>([]);
-
-  useEffect(() => {
-    const fetchExtensions = async () => {
-      try {
-        const response = await fetch("https://buidlguidl-v3.ew.r.appspot.com/builds?type=extension");
-        const data = await response.json();
-        const formattedExtensions = data.map((ext: any) => {
-          // Extract github username and repo name from the branch URL
-          const githubUrlParts = ext.branch.split("/");
-          const githubUsername = githubUrlParts[3];
-          const repoName = githubUrlParts[4];
-
-          return {
-            name: ext.name,
-            description: ext.desc,
-            github: ext.branch,
-            installCommand: `npx create-eth@latest -e ${githubUsername}/${repoName}`,
-            builder: ext.builder,
-            coBuilders: ext.coBuilders || [],
-            youtube: ext.videoUrl || undefined,
-          };
-        });
-        setThirdPartyExtensions(formattedExtensions);
-      } catch (error) {
-        console.error("Error fetching third-party extensions:", error);
-      }
-    };
-
-    fetchExtensions();
-  }, []);
-
+const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions }) => {
   return (
     <>
       <MetaHeader
@@ -170,6 +66,44 @@ const ExtensionsList: NextPage = () => {
       </div>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
+  try {
+    const response = await fetch("https://buidlguidl-v3.ew.r.appspot.com/builds?type=extension");
+    const data = await response.json();
+    const formattedExtensions = data.map((ext: any) => {
+      const githubUrlParts = ext.branch.split("/");
+      const githubUsername = githubUrlParts[3];
+      const repoName = githubUrlParts[4];
+
+      return {
+        name: ext.name,
+        description: ext.desc,
+        github: ext.branch,
+        installCommand: `npx create-eth@latest -e ${githubUsername}/${repoName}`,
+        builder: ext.builder,
+        coBuilders: ext.coBuilders || [],
+        youtube: ext.videoUrl || null,
+      };
+    });
+
+    return {
+      props: {
+        thirdPartyExtensions: formattedExtensions,
+      },
+      // Revalidate every 6 hours (21600 seconds)
+      revalidate: 21600,
+    };
+  } catch (error) {
+    console.error("Error fetching third-party extensions:", error);
+    return {
+      props: {
+        thirdPartyExtensions: [],
+      },
+      revalidate: 21600,
+    };
+  }
 };
 
 export default ExtensionsList;
