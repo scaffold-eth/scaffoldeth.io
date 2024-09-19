@@ -45,10 +45,10 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
         {/* Header section */}
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex relative w-10 h-10">
+            <div className="flex relative w-8 sm:w-10 h-8 sm:h-10">
               <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
             </div>
-            <span className="text-2xl font-medium">Scaffold-ETH 2</span>
+            <span className="text-xl sm:text-2xl font-medium">Scaffold-ETH 2</span>
           </Link>
           <Link href="/" className="btn btn-sm btn-ghost">
             Back to Home
