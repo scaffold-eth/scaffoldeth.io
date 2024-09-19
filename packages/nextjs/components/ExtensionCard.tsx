@@ -90,7 +90,7 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
       <div className="card-actions mx-4 p-4 pt-0 pb-6 mt-auto">
         <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
           <div className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer w-full">
-            <p className="m-0 text-center flex-grow">{extension.installCommand}</p>
+            <p className="m-0 text-center text-sm xl:text-base flex-grow">{extension.installCommand}</p>
             {commandCopied ? (
               <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
             ) : (
