@@ -5,7 +5,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
-import curatedExtensions from "~~/extensions.json";
+import curatedExtensions from "~~/public/extensions.json";
 
 type Extension = {
   name: string;
