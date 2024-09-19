@@ -33,8 +33,8 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
   };
 
   return (
-    <div className="card bg-base-100 shadow-xl mb-8">
-      <div className="card-body">
+    <div className="card bg-base-100 shadow-xl mb-8 flex flex-col mx-1">
+      <div className="card-body flex-grow">
         <h2 className="card-title">{extension.name}</h2>
         <div className="flex justify-between items-start mb-2">
           <div className="flex items-center gap-2">
@@ -71,12 +71,12 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           )}
         </div>
         <p
-          className="overflow-hidden"
-          // line-clamp-5 is not working, this is a workaround
+          className="overflow-hidden flex-grow"
           style={{
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
-            maxHeight: "7.5em", // Assumes default line height, adjust if needed
+            WebkitLineClamp: 5,
+            maxHeight: "7.5em",
           }}
         >
           {extension.description}
@@ -86,18 +86,18 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
             ⚠️ 3rd-party extension. Verify the source before installing.
           </div>
         )}
-        <div className="card-actions justify-start mt-4">
-          <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
-            <div className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer">
-              <p className="m-0 text-center text-sm sm:text-base">{extension.installCommand}</p>
-              {commandCopied ? (
-                <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-              ) : (
-                <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-              )}
-            </div>
-          </CopyToClipboard>
-        </div>
+      </div>
+      <div className="card-actions mx-4 p-4 pt-0 pb-6 mt-auto">
+        <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
+          <div className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer w-full">
+            <p className="m-0 text-center flex-grow">{extension.installCommand}</p>
+            {commandCopied ? (
+              <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
+            ) : (
+              <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
+            )}
+          </div>
+        </CopyToClipboard>
       </div>
     </div>
   );
