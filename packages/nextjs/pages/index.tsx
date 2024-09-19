@@ -241,7 +241,7 @@ const Home: NextPage = () => {
                 </TrackedLink>
               </p>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
-                <TrackedLink id="ExtensionsList" href="/extensions-list">
+                <TrackedLink id="ExtensionsList" href="/extensions">
                   Check out all the available extensions
                 </TrackedLink>
               </p>
