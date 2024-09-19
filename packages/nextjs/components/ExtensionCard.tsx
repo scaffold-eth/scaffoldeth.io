@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { usePlausible } from "next-plausible";
+import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
 
@@ -18,7 +19,6 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
   const plausible = usePlausible();
 
   const handleInstallClick = () => {
-    navigator.clipboard.writeText(extension.installCommand);
     setCommandCopied(true);
     setTimeout(() => {
       setCommandCopied(false);
@@ -87,17 +87,16 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           </div>
         )}
         <div className="card-actions justify-start mt-4">
-          <div
-            className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer"
-            onClick={handleInstallClick}
-          >
-            <p className="m-0 text-center text-sm sm:text-base">{extension.installCommand}</p>
-            {commandCopied ? (
-              <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-            ) : (
-              <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
-            )}
-          </div>
+          <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
+            <div className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer">
+              <p className="m-0 text-center text-sm sm:text-base">{extension.installCommand}</p>
+              {commandCopied ? (
+                <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
+              ) : (
+                <DocumentDuplicateIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
+              )}
+            </div>
+          </CopyToClipboard>
         </div>
       </div>
     </div>
