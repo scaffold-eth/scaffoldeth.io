@@ -55,9 +55,9 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
           </Link>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center md:text-left">Extensions List</h1>
-          <div className="relative w-full max-w-xs md:ml-8">
+        <div className="flex flex-col items-center justify-center gap-4 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-center">Extensions List</h1>
+          <div className="relative w-full max-w-xs">
             <input
               type="text"
               placeholder="Search extensions"
