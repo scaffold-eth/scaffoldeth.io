@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { usePlausible } from "next-plausible";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
@@ -40,18 +41,12 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           <div className="flex items-center gap-2">
             {extension.github && (
               <a href={extension.github} className="inline-block" target="_blank" rel="noopener noreferrer">
-                {
-                  // eslint-disable-next-line
-                  <img alt="github icon" className="w-6 h-6" src="/icon-github.svg" />
-                }
+                <Image src="/icon-github.svg" alt="github icon" width={24} height={24} />
               </a>
             )}
             {extension.youtube && (
               <a href={extension.youtube} className="inline-block" target="_blank" rel="noopener noreferrer">
-                {
-                  // eslint-disable-next-line
-                  <img alt="youtube icon" className="w-6 h-6" src="/icon-youtube.svg" />
-                }
+                <Image src="/icon-youtube.svg" alt="youtube icon" width={24} height={24} />
               </a>
             )}
           </div>
