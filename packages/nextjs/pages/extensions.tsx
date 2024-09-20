@@ -7,6 +7,8 @@ import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
 import curatedExtensions from "~~/public/extensions.json";
 
+const BGAPP_API_URL = process.env.BGAPP_API_URL;
+
 type Extension = {
   name: string;
   description: string;
@@ -99,7 +101,11 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
 // get third party extensions from buidlguidl app (builds with "extension" type)
 export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
   try {
-    const response = await fetch("https://buidlguidl-v3.ew.r.appspot.com/builds?type=extension");
+    if (!BGAPP_API_URL) {
+      throw new Error("BGAPP_API_URL environment variable is not set");
+    }
+
+    const response = await fetch(`${BGAPP_API_URL}/builds?type=extension`);
     const data = await response.json();
     const formattedExtensions = data.map((ext: any) => {
       const githubUrlParts = ext.branch.split("/");
