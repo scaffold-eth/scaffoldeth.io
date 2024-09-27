@@ -234,11 +234,18 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
-              <TrackedLink id="Extensions" href="https://docs.scaffoldeth.io/extensions/">
-                Learn more about extensions
-              </TrackedLink>
-            </p>
+            <div className="space-y-3">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
+                <TrackedLink id="Extensions" href="https://docs.scaffoldeth.io/extensions/">
+                  Learn more about extensions
+                </TrackedLink>
+              </p>
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
+                <TrackedLink id="ExtensionsList" href="/extensions">
+                  Check out all the available extensions
+                </TrackedLink>
+              </p>
+            </div>
           </div>
         </div>
       </div>
