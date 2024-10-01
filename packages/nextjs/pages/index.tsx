@@ -3,21 +3,45 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import TrackedLink from "~~/components/TrackedLink";
 
 const Home: NextPage = () => {
-  const [cloneCommandCopied, setCloneCommandCopied] = useState(false);
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
   const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
+
+  const featuredExtensions = [
+    {
+      name: "Ponder",
+      description: "Uses Ponder for powerful blockchain indexing",
+      installCommand: "npx create-eth@latest -e ponder",
+    },
+    {
+      name: "ERC-20",
+      description: "Start with a simple ERC-20 token implementation",
+      installCommand: "npx create-eth@latest -e erc-20",
+    },
+    {
+      name: "Subgraph",
+      description: "Integrate a subgraph for efficient data querying",
+      installCommand: "npx create-eth@latest -e subgraph",
+    },
+  ];
+
   return (
     <>
       <MetaHeader />
       {/* Hero section  */}
       <div
         className="flex flex-col items-center py-8 gap-12 md:gap-20"
-        style={{ backgroundImage: `url(/assets/heroPattern.svg)`, backgroundRepeat: "repeat" }}
+        style={{
+          backgroundImage: `url(/assets/heroPattern.svg)`,
+          backgroundRepeat: "repeat",
+          backgroundPosition: "center bottom",
+          backgroundSize: "cover",
+        }}
       >
         <div className="flex items-center gap-2">
           <div className="flex relative w-10 h-10">
@@ -35,19 +59,17 @@ const Home: NextPage = () => {
           </p>
           <div className="flex flex-col gap-5 items-center mb-2">
             <CopyToClipboard
-              text={"git clone https://github.com/scaffold-eth/scaffold-eth-2.git"}
+              text={"npx create-eth@latest"}
               onCopy={() => {
-                setCloneCommandCopied(true);
+                setNpxCommandCopied(true);
                 setTimeout(() => {
-                  setCloneCommandCopied(false);
+                  setNpxCommandCopied(false);
                 }, 800);
               }}
             >
               <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
-                <p className="m-0 text-center text-sm sm:text-base">
-                  git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-                </p>
-                {cloneCommandCopied ? (
+                <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
+                {npxCommandCopied ? (
                   <CheckCircleIcon
                     className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
                     aria-hidden="true"
@@ -60,34 +82,26 @@ const Home: NextPage = () => {
                 )}
               </div>
             </CopyToClipboard>
-            <div className="divider px-6 sm:px-20 m-0">OR</div>
-            <div className="flex items-center gap-2 mx-2">
-              <CopyToClipboard
-                text={"npx create-eth@latest"}
-                onCopy={() => {
-                  setNpxCommandCopied(true);
-                  setTimeout(() => {
-                    setNpxCommandCopied(false);
-                  }, 800);
-                }}
-              >
-                <div className="max-w-sm flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
-                  <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
-                  {npxCommandCopied ? (
-                    <CheckCircleIcon
-                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <DocumentDuplicateIcon
-                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </CopyToClipboard>
-              <div className="badge badge-warning">Beta</div>
+            <div className="divider px-6 sm:px-20 my-3">OR</div>
+            <div className="flex items-center gap-2 mx-2 mb-1">
+              <div className="badge badge-success">New</div>
+              <p className="m-0 text-center text-sm sm:text-base">
+                Use one of our starter-kit{" "}
+                <a href="#extensions-section" className="link">
+                  extensions.
+                </a>
+              </p>
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-5xl">
+              {featuredExtensions.map((extension, index) => (
+                <ExtensionCardMini key={index} extension={extension} />
+              ))}
+            </div>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
+              <TrackedLink id="ExtensionsListHero" href="/extensions">
+                Explore all the extensions
+              </TrackedLink>
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-4 items-center justify-center">
@@ -153,7 +167,7 @@ const Home: NextPage = () => {
                 Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
                 daisyUI to style your dapp and give it a modern and appealing design.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6 link">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4 link">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
                   Check out all the components
                 </TrackedLink>
@@ -164,7 +178,7 @@ const Home: NextPage = () => {
       </div>
 
       {/* Extensions Section */}
-      <div className="bg-base-200">
+      <div id="extensions-section" className="bg-base-200">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
           <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-24">
             <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
