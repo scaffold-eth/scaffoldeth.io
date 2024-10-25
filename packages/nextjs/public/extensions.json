@@ -42,7 +42,7 @@
     },
     {
       "name": "eip-5792",
-      "description": "This extension demonstrates on how to use EIP-5792 wallet capabilities. This EIP introduces new JSON-RPC methods for communication between apps and wallets.",
+      "description": "This extension demonstrates on how to use EIP-5792 wallet capabilities. This EIP introduces new JSON-RPC methods for sending multiple calls from the user wallet, and checking their status",
       "github": "https://github.com/scaffold-eth/create-eth-extensions/tree/eip-5792",
       "installCommand": "npx create-eth@latest -e eip-5792",
       "builder": "0x1A2d838c4bbd1e73d162d0777d142c1d783Cb831",
