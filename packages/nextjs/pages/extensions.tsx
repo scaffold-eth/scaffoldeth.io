@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { GetStaticProps, NextPage } from "next";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
-import curatedExtensions from "~~/public/extensions.json";
 
 const BGAPP_API_URL = process.env.BGAPP_API_URL;
 
@@ -25,8 +24,26 @@ interface ExtensionsListProps {
 
 const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [curatedExtensions, setCuratedExtensions] = useState<Extension[]>([]);
 
-  const allExtensions = [...curatedExtensions.curated, ...thirdPartyExtensions];
+  useEffect(() => {
+    const fetchCuratedExtensions = async () => {
+      try {
+        const response = await fetch(
+          "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
+        );
+        const data = await response.json();
+
+        setCuratedExtensions(data);
+      } catch (error) {
+        console.error("Error fetching curated extensions:", error);
+        setCuratedExtensions([]);
+      }
+    };
+    fetchCuratedExtensions();
+  }, [thirdPartyExtensions]);
+
+  const allExtensions = [...curatedExtensions, ...thirdPartyExtensions];
 
   const filteredExtensions = allExtensions.filter(extension => {
     if (searchQuery.length < 3) return true;
@@ -80,11 +97,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
           {filteredExtensions.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
               {filteredExtensions.map((extension, index) => (
-                <ExtensionCard
-                  key={index}
-                  extension={extension}
-                  isCurated={curatedExtensions.curated.includes(extension)}
-                />
+                <ExtensionCard key={index} extension={extension} isCurated={curatedExtensions.includes(extension)} />
               ))}
             </div>
           ) : (
