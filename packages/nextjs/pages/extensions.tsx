@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { GetStaticProps, NextPage } from "next";
@@ -20,28 +20,11 @@ type Extension = {
 
 interface ExtensionsListProps {
   thirdPartyExtensions: Extension[];
+  curatedExtensions: Extension[];
 }
 
-const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions }) => {
+const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, curatedExtensions }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [curatedExtensions, setCuratedExtensions] = useState<Extension[]>([]);
-
-  useEffect(() => {
-    const fetchCuratedExtensions = async () => {
-      try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
-        );
-        const data = await response.json();
-
-        setCuratedExtensions(data);
-      } catch (error) {
-        console.error("Error fetching curated extensions:", error);
-        setCuratedExtensions([]);
-      }
-    };
-    fetchCuratedExtensions();
-  }, [thirdPartyExtensions]);
 
   const allExtensions = [...curatedExtensions, ...thirdPartyExtensions];
 
@@ -111,7 +94,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
   );
 };
 
-// get third party extensions from buidlguidl app (builds with "extension" type)
+// get third party extensions from buidlguidl app (builds with "extension" type) and curated extensions from create-eth repo
 export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
   try {
     if (!BGAPP_API_URL) {
@@ -125,29 +108,43 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       const githubUsername = githubUrlParts[3];
       const repoName = githubUrlParts[4];
 
+      let installCommand = `npx create-eth@latest -e ${githubUsername}/${repoName}`;
+
+      if (githubUrlParts.length > 5) {
+        const branch = githubUrlParts[6];
+        installCommand = `${installCommand}:${branch}`;
+      }
+
       return {
         name: ext.name,
         description: ext.desc,
         github: ext.branch,
-        installCommand: `npx create-eth@latest -e ${githubUsername}/${repoName}`,
+        installCommand,
         builder: ext.builder,
         coBuilders: ext.coBuilders || [],
         youtube: ext.videoUrl || null,
       };
     });
 
+    const responseCuratedExtensions = await fetch(
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
+    );
+    const dataCuratedExtensions = await responseCuratedExtensions.json();
+
     return {
       props: {
         thirdPartyExtensions: formattedExtensions,
+        curatedExtensions: dataCuratedExtensions,
       },
       // Revalidate every 6 hours (21600 seconds)
       revalidate: 21600,
     };
   } catch (error) {
-    console.error("Error fetching third-party extensions:", error);
+    console.error("Error fetching third-party and curated extensions:", error);
     return {
       props: {
         thirdPartyExtensions: [],
+        curatedExtensions: [],
       },
       revalidate: 21600,
     };
