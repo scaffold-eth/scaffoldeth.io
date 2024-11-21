@@ -189,7 +189,7 @@ const Home: NextPage = () => {
                   }, 800);
                 }}
               >
-                <div className="flex items-center justify-between border-2 border-gray-300 rounded-xl px-3 py-2 text-xs sm:text-sm">
+                <div className="flex items-center justify-between border-2 border-primary rounded-xl px-3 py-2 text-xs sm:text-sm">
                   <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
                   {extensionCommandCopied ? (
                     <CheckCircleIcon
