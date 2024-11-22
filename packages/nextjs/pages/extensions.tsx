@@ -126,7 +126,9 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       };
     });
 
-    const responseCuratedExtensions = await fetch("http://localhost:3000/extensions.json");
+    const responseCuratedExtensions = await fetch(
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
+    );
     const dataCuratedExtensions = await responseCuratedExtensions.json();
 
     const curatedExtensions = dataCuratedExtensions.map((ext: any) => {
