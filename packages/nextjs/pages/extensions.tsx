@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
 
     const response = await fetch(`${BGAPP_API_URL}/builds?type=extension`);
     const data = await response.json();
-    const formattedExtensions = data.map((ext: any) => {
+    const thirdPartyExtensions = data.map((ext: any) => {
       const githubUrlParts = ext.branch.split("/");
       const githubUsername = githubUrlParts[3];
       const repoName = githubUrlParts[4];
@@ -126,15 +126,20 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       };
     });
 
-    const responseCuratedExtensions = await fetch(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
-    );
+    const responseCuratedExtensions = await fetch("http://localhost:3000/extensions.json");
     const dataCuratedExtensions = await responseCuratedExtensions.json();
+
+    const curatedExtensions = dataCuratedExtensions.map((ext: any) => {
+      if (!ext.name) {
+        ext.name = ext.branch;
+      }
+      return ext;
+    });
 
     return {
       props: {
-        thirdPartyExtensions: formattedExtensions,
-        curatedExtensions: dataCuratedExtensions,
+        thirdPartyExtensions,
+        curatedExtensions,
       },
       // Revalidate every 6 hours (21600 seconds)
       revalidate: 21600,
