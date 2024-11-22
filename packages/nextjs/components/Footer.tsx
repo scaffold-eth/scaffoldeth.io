@@ -11,7 +11,7 @@ export const Footer = () => {
           <div className="flex justify-center items-center gap-2 text-sm w-full text-white">
             <div>
               <a
-                href="https://github.com/scaffold-eth/scaffold-eth-2"
+                href="https://github.com/scaffold-eth/scaffoldeth.io"
                 target="_blank"
                 rel="noreferrer"
                 className="underline underline-offset-2 hover:opacity-80 transition-opacity"
