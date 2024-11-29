@@ -10,57 +10,34 @@ const Purple = ({ children }: { children: ReactNode }) => <span className="text-
 
 export const HooksExample = () => {
   return (
-    <div className="w-full flex-grow  bg-white rounded-2xl p-6 drop-shadow-[0px_0px_10px_rgba(139,178,241,0.50)]">
+    <div className="mt-0 lg:mt-16 w-full flex-grow  bg-white rounded-2xl p-6 drop-shadow-[0px_0px_10px_rgba(139,178,241,0.50)]">
       <div className="bg-base-300/40 w-full h-full border border-primary rounded-3xl p-4 lg:p-6 text-xs lg:text-sm  font-mono overflow-x-scroll whitespace-nowrap  lg:overflow-auto lg:whitespace-normal">
         <p className="my-3">
-          <Red>import</Red>
-          {" { "} useScaffoldContractWrite {" } "}
+          <Red>import</Red> {"{ "} useScaffoldReadContract {" } "}
           <Red>from</Red> <Cyan>&quot;~~/hooks/scaffold-eth&quot;</Cyan>;
+        </p>
+        <p className="my-3">
+          <Red>import</Red> {"{ "} Address {" } "}
+          <Red>from</Red> <Cyan>&quot;~~/components/scaffold-eth&quot;</Cyan>;
         </p>
 
         <p className="my-3">
-          <Red>const</Red>
-          {" { "}writeAsync, isLoading, isMining{" } "}
+          <Red>const</Red> {"{ "}data: yourContractOwner{" } "}
           <Cyan> = </Cyan>
-          <br />
-          <Purple>useScaffoldContractWrite</Purple>({"{"}
+          <Purple>useScaffoldReadContract</Purple>({"{"}
           <br />
           <span className="inline-block ml-4">
-            <Cyan>contractName</Cyan>: <Cyan dark>&quot;YourContract&quot;</Cyan>,
-            <br />
-            <Cyan>functionName</Cyan>: <Cyan dark>&quot;setPurpose&quot;</Cyan>,
-            <br />
-            <Cyan>args</Cyan>: [<Cyan dark>&quot;The value to set&quot;</Cyan>],
-            <br />
-            <Cyan>blockConfirmation</Cyan>: <Cyan dark>1</Cyan>,
-            <br />
-            <Purple>onBlockConfirmation</Purple>: (txnReceipt) =&gt; {"{"}
-            <br />
-            <span className="inline-block ml-4">
-              console.<Purple>log</Purple>(<Cyan>&quot;Transaction blockHash&quot;</Cyan>, &nbsp;txnReceipt.
-              <Cyan>blockHash</Cyan>
-              );
-            </span>
-            <br />
-            {"}"}
+            <Cyan>contractName</Cyan>: <Cyan dark>&quot;YourContract&quot;</Cyan>,<br />
+            <Cyan>functionName</Cyan>: <Cyan dark>&quot;owner&quot;</Cyan>,<br />
           </span>
           <br />
-          {"}"});
+          {"});"}
+          <br />
         </p>
-        <p className="text-gray-400 my-3">
-          {"//"} To send the transaction, you can call the writeAsync function <br className="lg:hidden" /> returned by
-          the hook. Here&apos;s an example usage:
-        </p>
+
         <p className="my-3">
-          <Red>{"<"}button</Red> className<Cyan>=&quot;btn btn-primary&quot;</Cyan> onClick<Cyan>=</Cyan>
-          {"{"}() <Cyan>=&gt;</Cyan> writeAsync(){"}"}
-          <Red>{">"}</Red>
-          <br />
-          <span className="inline-block ml-4">Send Tx</span>
-          <br />
-          <Red>
-            {"<"}/button{">"}
-          </Red>
+          <Red>{"<"}Address</Red> address<Cyan>=</Cyan>
+          {"{"}yourContractOwner{"}"} <Red>/{">"}</Red>
         </p>
       </div>
     </div>

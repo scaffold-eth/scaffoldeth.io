@@ -58,30 +58,32 @@ const Home: NextPage = () => {
             Foundry.
           </p>
           <div className="flex flex-col gap-5 items-center mb-2">
-            <CopyToClipboard
-              text={"npx create-eth@latest"}
-              onCopy={() => {
-                setNpxCommandCopied(true);
-                setTimeout(() => {
-                  setNpxCommandCopied(false);
-                }, 800);
-              }}
-            >
-              <div className="mx-2 flex border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2">
-                <p className="m-0 text-center text-sm sm:text-base">npx create-eth@latest</p>
-                {npxCommandCopied ? (
-                  <CheckCircleIcon
-                    className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  <DocumentDuplicateIcon
-                    className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                    aria-hidden="true"
-                  />
-                )}
-              </div>
-            </CopyToClipboard>
+            <div className="flex items-center gap-2 mx-2">
+              <CopyToClipboard
+                text={"npx create-eth@latest"}
+                onCopy={() => {
+                  setNpxCommandCopied(true);
+                  setTimeout(() => {
+                    setNpxCommandCopied(false);
+                  }, 800);
+                }}
+              >
+                <div className="max-w-sm flex border-2 border-primary rounded-xl px-3 sm:px-5 py-1 gap-2">
+                  <p className="m-0 text-center text-sm sm:text-base font-bold">npx create-eth@latest</p>
+                  {npxCommandCopied ? (
+                    <CheckCircleIcon
+                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <DocumentDuplicateIcon
+                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+              </CopyToClipboard>
+            </div>
             <div className="divider px-6 sm:px-20 my-3">OR</div>
             <div className="flex items-center gap-2 mx-2 mb-1">
               <div className="badge badge-success">New</div>
@@ -232,7 +234,7 @@ const Home: NextPage = () => {
                   }, 800);
                 }}
               >
-                <div className="flex items-center justify-between border-2 border-gray-300 rounded-xl px-3 py-2 text-xs sm:text-sm">
+                <div className="flex items-center justify-between border-2 border-primary rounded-xl px-3 py-2 text-xs sm:text-sm">
                   <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
                   {extensionCommandCopied ? (
                     <CheckCircleIcon
