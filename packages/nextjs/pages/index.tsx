@@ -84,6 +84,23 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
+            <div className="flex gap-2 items-center mb-4">
+              <TrackedLink
+                id="Docs"
+                href="https://docs.scaffoldeth.io/"
+                className="btn btn-outline btn-xs px-4 h-8 bg-base-100 normal-case font-normal text-sm"
+              >
+                Docs
+              </TrackedLink>
+              <TrackedLink
+                id="Github"
+                href="https://github.com/scaffold-eth/scaffold-eth-2"
+                className="btn btn-outline btn-xs px-4 h-8 bg-neutral text-white normal-case font-normal text-sm flex items-center gap-1"
+              >
+                Github
+                <Image src="/assets/ghIcon.png" alt="github icon" height={20} width={20} />
+              </TrackedLink>
+            </div>
             <div className="divider px-6 sm:px-20 my-3">OR</div>
             <div className="flex items-center gap-2 mx-2 mb-1">
               <div className="badge badge-success">New</div>
@@ -104,24 +121,6 @@ const Home: NextPage = () => {
                 Explore all the extensions
               </TrackedLink>
             </p>
-          </div>
-
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            <TrackedLink
-              id="Docs"
-              href="https://docs.scaffoldeth.io/"
-              className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-            >
-              Docs
-            </TrackedLink>
-            <TrackedLink
-              id="Github"
-              href="https://github.com/scaffold-eth/scaffold-eth-2"
-              className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
-            >
-              Github
-              <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
-            </TrackedLink>
           </div>
         </div>
       </div>
