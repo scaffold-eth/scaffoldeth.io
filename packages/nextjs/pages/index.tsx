@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import TrackedLink from "~~/components/TrackedLink";
@@ -10,13 +11,37 @@ import TrackedLink from "~~/components/TrackedLink";
 const Home: NextPage = () => {
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
   const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
+
+  const featuredExtensions = [
+    {
+      name: "Ponder",
+      description: "Uses Ponder for powerful blockchain indexing",
+      installCommand: "npx create-eth@latest -e ponder",
+    },
+    {
+      name: "ERC-20",
+      description: "Start with a simple ERC-20 token implementation",
+      installCommand: "npx create-eth@latest -e erc-20",
+    },
+    {
+      name: "Subgraph",
+      description: "Integrate a subgraph for efficient data querying",
+      installCommand: "npx create-eth@latest -e subgraph",
+    },
+  ];
+
   return (
     <>
       <MetaHeader />
       {/* Hero section  */}
       <div
         className="flex flex-col items-center py-8 gap-12 md:gap-20"
-        style={{ backgroundImage: `url(/assets/heroPattern.svg)`, backgroundRepeat: "repeat" }}
+        style={{
+          backgroundImage: `url(/assets/heroPattern.svg)`,
+          backgroundRepeat: "repeat",
+          backgroundPosition: "center bottom",
+          backgroundSize: "cover",
+        }}
       >
         <div className="flex items-center gap-2">
           <div className="flex relative w-10 h-10">
@@ -59,24 +84,43 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            <TrackedLink
-              id="Docs"
-              href="https://docs.scaffoldeth.io/"
-              className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
-            >
-              Docs
-            </TrackedLink>
-            <TrackedLink
-              id="Github"
-              href="https://github.com/scaffold-eth/scaffold-eth-2"
-              className="btn btn-outline btn-sm px-5 h-10 bg-neutral text-white normal-case font-normal text-lg flex items-center gap-2"
-            >
-              Github
-              <Image src="/assets/ghIcon.png" alt="github icon" height={25} width={25} />
-            </TrackedLink>
+            <div className="flex gap-2 items-center mb-4">
+              <TrackedLink
+                id="Docs"
+                href="https://docs.scaffoldeth.io/"
+                className="btn btn-outline btn-xs px-4 h-8 bg-base-100 normal-case font-normal text-sm"
+              >
+                Docs
+              </TrackedLink>
+              <TrackedLink
+                id="Github"
+                href="https://github.com/scaffold-eth/scaffold-eth-2"
+                className="btn btn-outline btn-xs px-4 h-8 bg-neutral text-white normal-case font-normal text-sm flex items-center gap-1"
+              >
+                Github
+                <Image src="/assets/ghIcon.png" alt="github icon" height={20} width={20} />
+              </TrackedLink>
+            </div>
+            <div className="divider px-6 sm:px-20 my-3">OR</div>
+            <div className="flex items-center gap-2 mx-2 mb-1">
+              <div className="badge badge-success">New</div>
+              <p className="m-0 text-center text-sm sm:text-base">
+                Use one of our starter-kit{" "}
+                <a href="#extensions-section" className="link">
+                  extensions.
+                </a>
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-5xl">
+              {featuredExtensions.map((extension, index) => (
+                <ExtensionCardMini key={index} extension={extension} />
+              ))}
+            </div>
+            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
+              <TrackedLink id="ExtensionsListHero" href="/extensions">
+                Explore all the extensions
+              </TrackedLink>
+            </p>
           </div>
         </div>
       </div>
@@ -124,7 +168,7 @@ const Home: NextPage = () => {
                 Accelerate your dapp development using our pre-built components for common web3 use cases. Tailwind and
                 daisyUI to style your dapp and give it a modern and appealing design.
               </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6 link">
+              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4 link">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
                   Check out all the components
                 </TrackedLink>
@@ -135,7 +179,7 @@ const Home: NextPage = () => {
       </div>
 
       {/* Extensions Section */}
-      <div className="bg-base-200">
+      <div id="extensions-section" className="bg-base-200">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
           <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-24">
             <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
