@@ -86,8 +86,8 @@ const Home: NextPage = () => {
               </p>
             </div>
             <div className="grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredExtensions.map((extension, index) => (
-                <ExtensionCardMini key={index} extension={extension} />
+              {featuredExtensions.map(extension => (
+                <ExtensionCardMini key={extension.name} extension={extension} />
               ))}
             </div>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
