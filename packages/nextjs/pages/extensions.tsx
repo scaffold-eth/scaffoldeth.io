@@ -135,6 +135,10 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       if (!ext.name) {
         ext.name = ext.branch;
       }
+      ext.github = ext.repository;
+      if (ext.branch) {
+        ext.github += `/tree/${ext.branch}`;
+      }
       return ext;
     });
 
