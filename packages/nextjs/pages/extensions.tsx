@@ -5,7 +5,6 @@ import type { GetStaticProps, NextPage } from "next";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
-import curatedExtensions from "~~/public/extensions.json";
 
 const BGAPP_API_URL = process.env.BGAPP_API_URL;
 
@@ -19,14 +18,25 @@ type Extension = {
   youtube?: string;
 };
 
+type CuratedExtensionResponse = {
+  extensionFlagValue: string;
+  repository: string;
+  branch?: string;
+  // fields usefull for scaffoldeth.io
+  description: string;
+  version?: string; // if not present we default to latest
+  name?: string; // human redable name, if not present we default to branch or extensionFlagValue on UI
+}[];
+
 interface ExtensionsListProps {
   thirdPartyExtensions: Extension[];
+  curatedExtensions: Extension[];
 }
 
-const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions }) => {
+const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, curatedExtensions }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allExtensions = [...curatedExtensions.curated, ...thirdPartyExtensions];
+  const allExtensions = [...curatedExtensions, ...thirdPartyExtensions];
 
   const filteredExtensions = allExtensions.filter(extension => {
     if (searchQuery.length < 3) return true;
@@ -80,11 +90,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
           {filteredExtensions.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-16">
               {filteredExtensions.map((extension, index) => (
-                <ExtensionCard
-                  key={index}
-                  extension={extension}
-                  isCurated={curatedExtensions.curated.includes(extension)}
-                />
+                <ExtensionCard key={index} extension={extension} isCurated={curatedExtensions.includes(extension)} />
               ))}
             </div>
           ) : (
@@ -98,7 +104,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions })
   );
 };
 
-// get third party extensions from buidlguidl app (builds with "extension" type)
+// get third party extensions from buidlguidl app (builds with "extension" type) and curated extensions from create-eth repo
 export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
   try {
     if (!BGAPP_API_URL) {
@@ -107,34 +113,63 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
 
     const response = await fetch(`${BGAPP_API_URL}/builds?type=extension`);
     const data = await response.json();
-    const formattedExtensions = data.map((ext: any) => {
+    const thirdPartyExtensions = data.map((ext: any) => {
       const githubUrlParts = ext.branch.split("/");
       const githubUsername = githubUrlParts[3];
       const repoName = githubUrlParts[4];
+
+      let installCommand = `npx create-eth@latest -e ${githubUsername}/${repoName}`;
+
+      if (githubUrlParts.length > 5) {
+        const branch = githubUrlParts[6];
+        installCommand = `${installCommand}:${branch}`;
+      }
 
       return {
         name: ext.name,
         description: ext.desc,
         github: ext.branch,
-        installCommand: `npx create-eth@latest -e ${githubUsername}/${repoName}`,
+        installCommand,
         builder: ext.builder,
         coBuilders: ext.coBuilders || [],
         youtube: ext.videoUrl || null,
       };
     });
 
+    const responseCuratedExtensions = await fetch(
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
+    );
+    const dataCuratedExtensions = (await responseCuratedExtensions.json()) as CuratedExtensionResponse;
+
+    const curatedExtensions: Extension[] = dataCuratedExtensions.map(ext => {
+      const name = ext.name || ext.extensionFlagValue;
+      const github = ext.branch ? `${ext.repository}/tree/${ext.branch}` : ext.repository;
+      const installCommand = `npx create-eth@${ext.version ? ext.version : "latest"} -e ${ext.extensionFlagValue}`;
+
+      return {
+        name,
+        description: ext.description,
+        github,
+        installCommand,
+        builder: "",
+        coBuilders: [],
+      };
+    });
+
     return {
       props: {
-        thirdPartyExtensions: formattedExtensions,
+        thirdPartyExtensions,
+        curatedExtensions,
       },
       // Revalidate every 6 hours (21600 seconds)
       revalidate: 21600,
     };
   } catch (error) {
-    console.error("Error fetching third-party extensions:", error);
+    console.error("Error fetching third-party and curated extensions:", error);
     return {
       props: {
         thirdPartyExtensions: [],
+        curatedExtensions: [],
       },
       revalidate: 21600,
     };

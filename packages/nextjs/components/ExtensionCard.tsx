@@ -9,9 +9,9 @@ type Extension = {
   name: string;
   description: string;
   github: string;
-  installCommand: string;
-  builder: string;
-  coBuilders: string[];
+  installCommand?: string;
+  builder?: string;
+  coBuilders?: string[];
   youtube?: string;
 };
 
@@ -32,6 +32,8 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
     // Track the click event with GitHub repo as a prop
     plausible("extensionCopyClick", { props: { id: githubRepo } });
   };
+
+  const installCommand = extension.installCommand || `npx create-eth@latest -e ${extension.name}`;
 
   return (
     <div className="card bg-base-100 shadow-xl mb-8 flex flex-col mx-1">
@@ -83,9 +85,9 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
         )}
       </div>
       <div className="card-actions mx-4 p-4 pt-0 pb-6 mt-auto">
-        <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
+        <CopyToClipboard text={installCommand} onCopy={handleInstallClick}>
           <div className="flex items-center border-2 border-gray-300 rounded-xl px-3 sm:px-5 py-1 gap-2 cursor-pointer w-full">
-            <p className="m-0 text-center text-sm xl:text-base flex-grow">{extension.installCommand}</p>
+            <p className="m-0 text-center text-sm xl:text-base flex-grow">{installCommand}</p>
             {commandCopied ? (
               <CheckCircleIcon className="text-xl font-normal h-6 w-4 flex-shrink-0" aria-hidden="true" />
             ) : (
