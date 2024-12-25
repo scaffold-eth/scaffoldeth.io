@@ -18,6 +18,16 @@ type Extension = {
   youtube?: string;
 };
 
+type CuratedExtensionResponse = {
+  extensionFlagValue: string;
+  repository: string;
+  branch?: string;
+  // fields usefull for scaffoldeth.io
+  description: string;
+  version?: string; // if not present we default to latest
+  name?: string; // human redable name, if not present we default to branch or extensionFlagValue on UI
+}[];
+
 interface ExtensionsListProps {
   thirdPartyExtensions: Extension[];
   curatedExtensions: Extension[];
@@ -129,17 +139,21 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
     const responseCuratedExtensions = await fetch(
       "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
     );
-    const dataCuratedExtensions = await responseCuratedExtensions.json();
+    const dataCuratedExtensions = (await responseCuratedExtensions.json()) as CuratedExtensionResponse;
 
-    const curatedExtensions = dataCuratedExtensions.map((ext: any) => {
-      if (!ext.name) {
-        ext.name = ext.branch;
-      }
-      ext.github = ext.repository;
-      if (ext.branch) {
-        ext.github += `/tree/${ext.branch}`;
-      }
-      return ext;
+    const curatedExtensions: Extension[] = dataCuratedExtensions.map(ext => {
+      const name = ext.name || ext.extensionFlagValue;
+      const github = ext.branch ? `${ext.repository}/tree/${ext.branch}` : ext.repository;
+      const installCommand = `npx create-eth@${ext.version ? ext.version : "latest"} -e ${ext.extensionFlagValue}`;
+
+      return {
+        name,
+        description: ext.description,
+        github,
+        installCommand,
+        builder: "",
+        coBuilders: [],
+      };
     });
 
     return {
