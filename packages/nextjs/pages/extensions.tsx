@@ -111,36 +111,13 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       throw new Error("BGAPP_API_URL environment variable is not set");
     }
 
-    const response = await fetch(`${BGAPP_API_URL}/builds?type=extension`);
-    const data = await response.json();
-    const thirdPartyExtensions = data.map((ext: any) => {
-      const githubUrlParts = ext.branch.split("/");
-      const githubUsername = githubUrlParts[3];
-      const repoName = githubUrlParts[4];
-
-      let installCommand = `npx create-eth@latest -e ${githubUsername}/${repoName}`;
-
-      if (githubUrlParts.length > 5) {
-        const branch = githubUrlParts[6];
-        installCommand = `${installCommand}:${branch}`;
-      }
-
-      return {
-        name: ext.name,
-        description: ext.desc,
-        github: ext.branch,
-        installCommand,
-        builder: ext.builder,
-        coBuilders: ext.coBuilders || [],
-        youtube: ext.videoUrl || null,
-      };
-    });
-
+    // Fetch curated extensions first to use as a filter
     const responseCuratedExtensions = await fetch(
       "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
     );
     const dataCuratedExtensions = (await responseCuratedExtensions.json()) as CuratedExtensionResponse;
 
+    // Transform curated extensions
     const curatedExtensions: Extension[] = dataCuratedExtensions.map(ext => {
       const name = ext.name || ext.extensionFlagValue;
       const github = ext.branch ? `${ext.repository}/tree/${ext.branch}` : ext.repository;
@@ -155,6 +132,37 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
         coBuilders: [],
       };
     });
+
+    // Fetch and filter third-party extensions
+    const response = await fetch(`${BGAPP_API_URL}/builds?type=extension`);
+    const data = await response.json();
+
+    const thirdPartyExtensions = data
+      .filter(
+        (ext: any) => !curatedExtensions.find(curated => curated.github.toLowerCase() === ext.branch.toLowerCase()),
+      )
+      .map((ext: any) => {
+        const githubUrlParts = ext.branch.split("/");
+        const githubUsername = githubUrlParts[3];
+        const repoName = githubUrlParts[4];
+
+        let installCommand = `npx create-eth@latest -e ${githubUsername}/${repoName}`;
+
+        if (githubUrlParts.length > 5) {
+          const branch = githubUrlParts[6];
+          installCommand = `${installCommand}:${branch}`;
+        }
+
+        return {
+          name: ext.name,
+          description: ext.desc,
+          github: ext.branch,
+          installCommand,
+          builder: ext.builder,
+          coBuilders: ext.coBuilders || [],
+          youtube: ext.videoUrl || null,
+        };
+      });
 
     return {
       props: {
