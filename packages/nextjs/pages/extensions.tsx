@@ -164,10 +164,15 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
         };
       });
 
+    // Filter out SpeedRunEthereum challenges extensions
+    const curatedExtensionsFiltered = curatedExtensions.filter(
+      ext => !ext.github.startsWith("https://github.com/scaffold-eth/se-2-challenges"),
+    );
+
     return {
       props: {
         thirdPartyExtensions,
-        curatedExtensions,
+        curatedExtensions: curatedExtensionsFiltered,
       },
       // Revalidate every 6 hours (21600 seconds)
       revalidate: 21600,
