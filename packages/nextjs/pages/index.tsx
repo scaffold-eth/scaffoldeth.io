@@ -1,17 +1,12 @@
-import { useState } from "react";
 import Image from "next/image";
 import type { NextPage } from "next";
-import CopyToClipboard from "react-copy-to-clipboard";
-import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { CopyToClipBoardButton } from "~~/components/CopyToClipBoardButton";
 import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import TrackedLink from "~~/components/TrackedLink";
 
 const Home: NextPage = () => {
-  const [npxCommandCopied, setNpxCommandCopied] = useState(false);
-  const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
-
   const featuredExtensions = [
     {
       name: "Ponder",
@@ -35,7 +30,7 @@ const Home: NextPage = () => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center py-8 gap-12 md:gap-20"
+        className="flex flex-col items-center gap-12 py-8 md:gap-20"
         style={{
           backgroundImage: `url(/assets/heroPattern.svg)`,
           backgroundRepeat: "repeat",
@@ -44,76 +39,55 @@ const Home: NextPage = () => {
         }}
       >
         <div className="flex items-center gap-2">
-          <div className="flex relative w-10 h-10">
+          <div className="relative flex w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
-          <p className="text-3xl m-0 font-medium mt-1">Scaffold-ETH 2</p>
+          <p className="m-0 mt-1 text-3xl font-medium">Scaffold-ETH 2</p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-8 mb-14 px-4">
-          <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
+        <div className="flex flex-col items-center justify-center gap-8 px-4 mb-14">
+          <h1 className="max-w-md px-3 m-0 text-3xl text-center lg:text-5xl lg:max-w-2xl">
             Everything you need to build dApps on Ethereum
           </h1>
-          <p className="m-0 text-center max-w-xl px-3">
+          <p className="max-w-xl px-3 m-0 text-center">
             A modern, clean version of Scaffold-ETH with NextJS, RainbowKit, Wagmi and Typescript. Supports Hardhat and
             Foundry.
           </p>
-          <div className="flex flex-col gap-5 items-center mb-2">
+          <div className="flex flex-col items-center gap-5 mb-2">
             <div className="flex items-center gap-2 mx-2">
-              <CopyToClipboard
-                text={"npx create-eth@latest"}
-                onCopy={() => {
-                  setNpxCommandCopied(true);
-                  setTimeout(() => {
-                    setNpxCommandCopied(false);
-                  }, 800);
-                }}
-              >
-                <div className="max-w-sm flex border-2 border-primary rounded-xl px-3 sm:px-5 py-1 gap-2">
-                  <p className="m-0 text-center text-sm sm:text-base font-bold">npx create-eth@latest</p>
-                  {npxCommandCopied ? (
-                    <CheckCircleIcon
-                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <DocumentDuplicateIcon
-                      className="text-xl font-normal h-6 w-4 cursor-pointer flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </CopyToClipboard>
+              <div className="flex max-w-sm gap-2 px-3 py-1 border-2 border-primary rounded-xl sm:px-5">
+                <CopyToClipBoardButton text="npx create-eth@latest" />
+              </div>
             </div>
-            <div className="flex gap-2 items-center mb-4">
+            <div className="flex items-center gap-2 mb-4">
               <TrackedLink
                 id="Docs"
                 href="https://docs.scaffoldeth.io/"
-                className="btn btn-outline btn-xs px-4 h-8 bg-base-100 normal-case font-normal text-sm"
+                className="h-8 px-4 text-sm font-normal normal-case btn btn-outline btn-xs bg-base-100"
               >
                 Docs
               </TrackedLink>
               <TrackedLink
                 id="Github"
                 href="https://github.com/scaffold-eth/scaffold-eth-2"
-                className="btn btn-outline btn-xs px-4 h-8 bg-neutral text-white normal-case font-normal text-sm flex items-center gap-1"
+                className="flex items-center h-8 gap-1 px-4 text-sm font-normal text-white normal-case btn btn-outline btn-xs bg-neutral"
               >
                 Github
                 <Image src="/assets/ghIcon.png" alt="github icon" height={20} width={20} />
               </TrackedLink>
             </div>
-            <div className="divider px-6 sm:px-20 my-3">OR</div>
+            <div className="px-6 my-3 divider sm:px-20">OR</div>
             <div className="flex items-center gap-2 mx-2 mb-1">
               <div className="badge badge-success">New</div>
-              <p className="m-0 text-center text-sm sm:text-base">
+              <p className="m-0 text-sm text-center sm:text-base">
                 Use one of our starter-kit{" "}
                 <a href="#extensions-section" className="link">
                   extensions.
                 </a>
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-5xl">
-              {featuredExtensions.map((extension, index) => (
-                <ExtensionCardMini key={index} extension={extension} />
+            <div className="grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredExtensions.map(extension => (
+                <ExtensionCardMini key={extension.name} extension={extension} />
               ))}
             </div>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
@@ -129,11 +103,11 @@ const Home: NextPage = () => {
       <div className="bg-base-300/20">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-0">
           <div className="space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+            <div className="flex items-center justify-center gap-2 pt-4 lg:flex-col lg:items-start lg:justify-start lg:pt-0">
               <Image src="/assets/debugLogo.svg" alt="debug icon" height={30} width={30} />
-              <p className="text-center lg:text-left text-xl m-0 font-light">DEBUG CONTRACTS</p>
+              <p className="m-0 text-xl font-light text-center lg:text-left">DEBUG CONTRACTS</p>
             </div>
-            <h2 className="text-2xl lg:text-4xl md:w-3/5 lg:w-4/5 lg:max-w-none mx-auto text-center lg:text-left lg:mx-0 font-medium">
+            <h2 className="mx-auto text-2xl font-medium text-center lg:text-4xl md:w-3/5 lg:w-4/5 lg:max-w-none lg:text-left lg:mx-0">
               Experiment with Solidity using a frontend that adapts to your smart contract
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
@@ -155,13 +129,13 @@ const Home: NextPage = () => {
               <Image src="/assets/se2Components.png" alt="Scaffold-ETH 2 components" width={900} height={900} />
             </div>
           </div>
-          <div className="space-y-6 flex flex-col items-center lg:items-end">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4 pt-4 lg:pt-0">
+          <div className="flex flex-col items-center space-y-6 lg:items-end">
+            <div className="flex items-center justify-center gap-2 pt-4 lg:flex-col lg:items-start lg:justify-start lg:w-3/4 lg:pt-0">
               <Image src="/assets/sparkles.svg" alt="debug icon" height={20} width={20} />
-              <p className="text-center lg:text-left text-xl m-0 font-light">COMPONENTS</p>
+              <p className="m-0 text-xl font-light text-center lg:text-left">COMPONENTS</p>
             </div>
-            <div className="md:w-3/4 lg:max-w-none space-y-5">
-              <h2 className="text-2xl lg:text-4xl lg:w-4/5 text-center lg:text-left font-medium">
+            <div className="space-y-5 md:w-3/4 lg:max-w-none">
+              <h2 className="text-2xl font-medium text-center lg:text-4xl lg:w-4/5 lg:text-left">
                 Common web3 components in tailwind and daisy UI
               </h2>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
@@ -181,7 +155,7 @@ const Home: NextPage = () => {
       {/* Extensions Section */}
       <div id="extensions-section" className="bg-base-200">
         <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
-          <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-24">
+          <div className="w-full mb-8 lg:w-3/5 lg:order-2 lg:mb-0 lg:pl-24">
             <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
@@ -195,12 +169,12 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-2/5 lg:order-1 space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+          <div className="w-full space-y-6 lg:w-2/5 lg:order-1">
+            <div className="flex items-center justify-center gap-2 pt-4 lg:flex-col lg:items-start lg:justify-start lg:pt-0">
               <span className="text-2xl">🔌</span> {/* TODO Change Emoji icon for custom icon*/}
-              <p className="text-center lg:text-left text-xl m-0 font-light">EXTENSIONS</p>
+              <p className="m-0 text-xl font-light text-center lg:text-left">EXTENSIONS</p>
             </div>
-            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+            <h2 className="text-2xl font-medium text-center lg:text-4xl lg:text-left">
               Modular add-ons for your initial project setup
             </h2>
             <div className="text-center lg:text-left space-y-4 max-w-[450px] md:max-w-[600px] lg:max-w-none m-auto lg:mx-0 md:px-12 lg:px-0">
@@ -224,30 +198,9 @@ const Home: NextPage = () => {
               Example usage:
             </p>
             <div className="w-full max-w-[450px] mx-auto lg:mx-0">
-              <CopyToClipboard
-                text="npx create-eth@latest -e gitHubUsername/repoName"
-                onCopy={() => {
-                  setExtensionCommandCopied(true);
-                  setTimeout(() => {
-                    setExtensionCommandCopied(false);
-                  }, 800);
-                }}
-              >
-                <div className="flex items-center justify-between border-2 border-primary rounded-xl px-3 py-2 text-xs sm:text-sm">
-                  <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
-                  {extensionCommandCopied ? (
-                    <CheckCircleIcon
-                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <DocumentDuplicateIcon
-                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </CopyToClipboard>
+              <div className="flex items-center justify-between px-3 py-2 text-xs border-2 border-primary rounded-xl sm:text-sm">
+                <CopyToClipBoardButton text="npx create-eth@latest -e gitHubUsername/repoName" />
+              </div>
             </div>
             <div className="space-y-3">
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
@@ -267,16 +220,16 @@ const Home: NextPage = () => {
 
       {/* Buidl in Community */}
       <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
-        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
-          <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
-          <p className="text-center m-0">
+        <div className="flex flex-col items-center justify-center w-4/5 max-w-3xl gap-4 p-10 -mb-12 shadow-lg bg-base-200 lg:w-5/12 rounded-3xl shadow-primary">
+          <p className="m-0 text-3xl font-medium text-center">Buidl in Community</p>
+          <p className="m-0 text-center">
             You can build and learn together with the BuidlGuidl community, joining over 800 members in creating
             products, prototypes, and tutorials to enrich the web3 ecosystem.
           </p>
           <TrackedLink
             id="BuidlGuidl"
             href="https://buidlguidl.com"
-            className="btn btn-outline btn-sm px-5 h-10 bg-base-100 normal-case font-normal text-lg"
+            className="h-10 px-5 text-lg font-normal normal-case btn btn-outline btn-sm bg-base-100"
           >
             Learn More
           </TrackedLink>
@@ -284,15 +237,15 @@ const Home: NextPage = () => {
       </div>
 
       {/* Hooks and Utils */}
-      <div className="bg-base-200 pt-12">
+      <div className="pt-12 bg-base-200">
         <div className="container max-w-[80%] lg:max-w-7xl m-auto py-24 lg:py-20 lg:pl-12 lg:pr-6 flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-28">
-          <div className="space-y-6 flex-shrink lg:w-2/3 lg:self-start lg:mt-14">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
+          <div className="flex-shrink space-y-6 lg:w-2/3 lg:self-start lg:mt-14">
+            <div className="flex items-center justify-center gap-2 pt-4 lg:flex-col lg:items-start lg:justify-start lg:pt-0">
               <Image src="/assets/atom.svg" alt="debug icon" height={40} width={40} />
-              <p className="text-center lg:text-left text-xl m-0 font-light">HOOKS AND UTILS</p>
+              <p className="m-0 text-xl font-light text-center lg:text-left">HOOKS AND UTILS</p>
             </div>
 
-            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+            <h2 className="text-2xl font-medium text-center lg:text-4xl lg:text-left">
               Custom Wagmi <br /> hooks and utils
             </h2>
             <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:pr-6">
@@ -319,13 +272,13 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className="space-y-6 flex flex-col items-center lg:pl-16">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 lg:w-3/4 pt-4 lg:pt-0">
+          <div className="flex flex-col items-center space-y-6 lg:pl-16">
+            <div className="flex items-center justify-center gap-2 pt-4 lg:flex-col lg:items-start lg:justify-start lg:w-3/4 lg:pt-0">
               <Image src="/assets/magnifying.svg" alt="debug icon" height={20} width={20} />
-              <p className="text-center lg:text-left text-xl m-0 font-light">BLOCK EXPLORER</p>
+              <p className="m-0 text-xl font-light text-center lg:text-left">BLOCK EXPLORER</p>
             </div>
-            <div className="md:w-3/4 lg:max-w-none space-y-6">
-              <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
+            <div className="space-y-6 md:w-3/4 lg:max-w-none">
+              <h2 className="text-2xl font-medium text-center lg:text-4xl lg:text-left">
                 Built-in Block Explorer to check transaction data easily during your tests
               </h2>
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4">
