@@ -84,14 +84,19 @@ const Home: NextPage = () => {
                 </div>
               </CopyToClipboard>
             </div>
-            <div className="flex gap-2 items-center mb-4">
-              <TrackedLink
-                id="Docs"
-                href="https://docs.scaffoldeth.io/"
-                className="btn btn-outline btn-xs px-4 h-8 bg-base-100 normal-case font-normal text-sm"
-              >
-                Docs
-              </TrackedLink>
+            <div className="flex gap-4 items-baseline mb-4">
+              <div className="flex flex-col gap-1.5">
+                <TrackedLink
+                  id="Docs"
+                  href="https://docs.scaffoldeth.io/"
+                  className="btn btn-outline btn-xs px-4 h-8 bg-base-100 normal-case font-normal text-sm"
+                >
+                  Docs
+                </TrackedLink>
+                <TrackedLink id="llm" href="https://docs.scaffoldeth.io/llms-full.txt" className="text-xs link">
+                  llms-full.txt
+                </TrackedLink>
+              </div>
               <TrackedLink
                 id="Github"
                 href="https://github.com/scaffold-eth/scaffold-eth-2"
