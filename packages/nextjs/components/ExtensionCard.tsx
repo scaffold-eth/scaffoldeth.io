@@ -55,16 +55,18 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           {isCurated ? (
             <div className="badge badge-secondary p-3">Curated</div>
           ) : (
-            <div>
-              <Address address={extension.builder} disableAddressLink />
-              {extension.coBuilders && extension.coBuilders.length > 0 && (
-                <div className="text-sm mt-2">
-                  {extension.coBuilders.map((coBuilder, index) => (
-                    <Address key={index} address={coBuilder} disableAddressLink />
-                  ))}
-                </div>
-              )}
-            </div>
+            extension.builder && (
+              <div>
+                <Address address={extension.builder} disableAddressLink />
+                {extension.coBuilders && extension.coBuilders.length > 0 && (
+                  <div className="text-sm mt-2">
+                    {extension.coBuilders.map((coBuilder, index) => (
+                      <Address key={index} address={coBuilder} disableAddressLink />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
           )}
         </div>
         <p
