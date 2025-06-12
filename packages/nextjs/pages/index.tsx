@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center py-8 gap-12 md:gap-20"
+        className="flex flex-col items-center pt-8 pb-64 gap-12 md:gap-20"
         style={{
           backgroundImage: `url(/assets/heroPattern.svg)`,
           backgroundRepeat: "repeat",
@@ -126,6 +126,19 @@ const Home: NextPage = () => {
                 Explore all the extensions
               </TrackedLink>
             </p>
+          </div>
+        </div>
+      </div>
+      <div className="bg-base-300/20">
+        <div className="container max-w-[90%] lg:max-w-5xl m-auto py-16 lg:py-20">
+          <div className="-mt-72 relative w-full" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src="https://www.youtube.com/embed/AUwYGRkxm_8"
+              title="Scaffold-ETH 2 Extensions Introduction"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
           </div>
         </div>
       </div>
