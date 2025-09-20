@@ -15,7 +15,7 @@ export default function TrackedLink({ id, href, className, children }: TrackedLi
   return (
     <a
       href={href}
-      target="_blanck"
+      target="_blank"
       rel="noreferrer"
       className={className}
       onClick={() => plausible("click", { props: { id } })}
