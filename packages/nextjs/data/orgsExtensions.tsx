@@ -8,12 +8,4 @@ export const orgsExtensions: Extension[] = [
     github: "https://github.com/MetaMask/gator-extension",
     installCommand: "npx create-eth@latest -e metamask/gator-extension",
   },
-
-  {
-    name: "Envio Indexer",
-    description:
-      "This extension adds automatic Envio indexer generation to your Scaffold-ETH 2 project, allowing you to index all your deployed smart contracts and query their data through a GraphQL API",
-    github: "https://github.com/enviodev/scaffold-eth-2-extension",
-    installCommand: "npx create-eth@latest -e enviodev/scaffold-eth-2-extension",
-  },
 ];
