@@ -5,7 +5,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
-import { orgsExtensions } from "~~/data/orgsExtensions";
+import { fetchAndParseTypeScriptExtensions } from "~~/utils/scaffold-eth";
 
 const BGAPP_API_URL = process.env.BGAPP_API_URL;
 
@@ -19,16 +19,6 @@ export type Extension = {
   youtube?: string;
 };
 
-type CuratedExtensionResponse = {
-  extensionFlagValue: string;
-  repository: string;
-  branch?: string;
-  // fields usefull for scaffoldeth.io
-  description: string;
-  version?: string; // if not present we default to latest
-  name?: string; // human redable name, if not present we default to branch or extensionFlagValue on UI
-}[];
-
 interface ExtensionsListProps {
   thirdPartyExtensions: Extension[];
   curatedExtensions: Extension[];
@@ -37,7 +27,7 @@ interface ExtensionsListProps {
 const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, curatedExtensions }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allExtensions = [...curatedExtensions, ...orgsExtensions, ...thirdPartyExtensions];
+  const allExtensions = [...curatedExtensions, ...thirdPartyExtensions];
 
   const filteredExtensions = allExtensions.filter(extension => {
     if (searchQuery.length < 3) return true;
@@ -112,17 +102,23 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
       throw new Error("BGAPP_API_URL environment variable is not set");
     }
 
-    // Fetch curated extensions first to use as a filter
-    const responseCuratedExtensions = await fetch(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/refs/heads/main/src/extensions.json",
+    const createEthExtensionsData = await fetchAndParseTypeScriptExtensions(
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/known-extensions/src/extensions/create-eth-extensions.ts",
     );
-    const dataCuratedExtensions = (await responseCuratedExtensions.json()) as CuratedExtensionResponse;
+
+    const organizationsData = await fetchAndParseTypeScriptExtensions(
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/known-extensions/src/extensions/organizations.ts",
+    );
+
+    const dataCuratedExtensions = [...createEthExtensionsData, ...organizationsData];
 
     // Transform curated extensions
     const curatedExtensions: Extension[] = dataCuratedExtensions.map(ext => {
       const name = ext.name || ext.extensionFlagValue;
       const github = ext.branch ? `${ext.repository}/tree/${ext.branch}` : ext.repository;
-      const installCommand = `npx create-eth@${ext.version ? ext.version : "latest"} -e ${ext.extensionFlagValue}`;
+      const installCommand = `npx create-eth@${ext.createEthVersion ? ext.createEthVersion : "latest"} -e ${
+        ext.extensionFlagValue
+      }`;
 
       return {
         name,
@@ -165,15 +161,10 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
         };
       });
 
-    // Filter out SpeedRunEthereum challenges extensions
-    const curatedExtensionsFiltered = curatedExtensions.filter(
-      ext => !ext.github.startsWith("https://github.com/scaffold-eth/se-2-challenges"),
-    );
-
     return {
       props: {
         thirdPartyExtensions,
-        curatedExtensions: curatedExtensionsFiltered,
+        curatedExtensions,
       },
       // Revalidate every 6 hours (21600 seconds)
       revalidate: 21600,
