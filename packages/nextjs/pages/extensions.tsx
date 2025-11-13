@@ -103,11 +103,11 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
     }
 
     const createEthExtensionsData = await fetchAndParseTypeScriptExtensions(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/known-extensions/src/extensions/create-eth-extensions.ts",
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/main/src/extensions/create-eth-extensions.ts",
     );
 
     const organizationsData = await fetchAndParseTypeScriptExtensions(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/known-extensions/src/extensions/organizations.ts",
+      "https://raw.githubusercontent.com/scaffold-eth/create-eth/main/src/extensions/organizations.ts",
     );
 
     const dataCuratedExtensions = [...createEthExtensionsData, ...organizationsData];
