@@ -1,14 +1,19 @@
 import { useState } from "react";
 import Image from "next/image";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { SE2Stats, SE2StatsData } from "~~/components/SE2Stats";
 import TrackedLink from "~~/components/TrackedLink";
 
-const Home: NextPage = () => {
+type HomeProps = {
+  se2Stats: SE2StatsData | null;
+};
+
+const Home: NextPage<HomeProps> = ({ se2Stats }) => {
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
   const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
 
@@ -35,7 +40,7 @@ const Home: NextPage = () => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-64"
+        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-56"
         style={{
           backgroundImage: `url(/assets/heroPattern.svg)`,
           backgroundRepeat: "repeat",
@@ -129,8 +134,10 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+
+      {/* SE2 Video and Stats */}
       <div className="bg-base-300/20">
-        <div className="container max-w-[90%] lg:max-w-5xl m-auto pt-16 pb-8 lg:py-20">
+        <div className="container max-w-[90%] lg:max-w-5xl m-auto pt-16 pb-8 lg:pt-20 lg:pb-10">
           <div className="-mt-32 lg:-mt-72 w-full rounded-2xl overflow-hidden shadow-lg shadow-primary">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
               <iframe
@@ -142,6 +149,7 @@ const Home: NextPage = () => {
               ></iframe>
             </div>
           </div>
+          <SE2Stats stats={se2Stats} />
         </div>
       </div>
 
@@ -358,6 +366,28 @@ const Home: NextPage = () => {
       </div>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  try {
+    const res = await fetch("https://se2-projects.vercel.app/api/repositories/stats");
+    const data = await res.json();
+    return {
+      props: {
+        se2Stats: {
+          totalRepositories: data.totalRepos ?? 0,
+          totalStars: data.totals?.totalStars ?? 0,
+          totalForks: data.totals?.totalForks ?? 0,
+        },
+      },
+      revalidate: 21600, // Revalidate every 6 hours
+    };
+  } catch {
+    return {
+      props: { se2Stats: null },
+      revalidate: 60, // Retry sooner on error
+    };
+  }
 };
 
 export default Home;
