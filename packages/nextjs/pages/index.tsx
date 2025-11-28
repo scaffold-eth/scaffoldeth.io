@@ -40,7 +40,7 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-56"
+        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-[29rem]"
         style={{
           backgroundImage: `url(/assets/heroPattern.svg)`,
           backgroundRepeat: "repeat",
@@ -126,11 +126,13 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
                 <ExtensionCardMini key={index} extension={extension} />
               ))}
             </div>
-            <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
-              <TrackedLink id="ExtensionsListHero" href="/extensions">
-                Explore all the extensions
-              </TrackedLink>
-            </p>
+            <div className="w-full max-w-5xl flex justify-end">
+              <p className="m-0 text-center lg:text-left link">
+                <TrackedLink id="ExtensionsListHero" href="/extensions">
+                  Explore all the extensions
+                </TrackedLink>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -138,7 +140,8 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
       {/* SE2 Video and Stats */}
       <div className="bg-base-300/20">
         <div className="container max-w-[90%] lg:max-w-5xl m-auto pt-16 pb-8 lg:pt-20 lg:pb-10">
-          <div className="-mt-32 lg:-mt-72 w-full rounded-2xl overflow-hidden shadow-lg shadow-primary">
+          <SE2Stats stats={se2Stats} />
+          <div className="w-full rounded-2xl overflow-hidden shadow-lg shadow-primary">
             <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
               <iframe
                 src="https://www.youtube.com/embed/AUwYGRkxm_8"
@@ -149,7 +152,6 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
               ></iframe>
             </div>
           </div>
-          <SE2Stats stats={se2Stats} />
         </div>
       </div>
 
@@ -370,7 +372,7 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
-    const res = await fetch("https://se2-projects.vercel.app/api/repositories/stats");
+    const res = await fetch("http://projects.scaffoldeth.io/api/repositories/stats");
     const data = await res.json();
     return {
       props: {

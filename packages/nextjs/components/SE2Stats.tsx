@@ -38,9 +38,9 @@ const ForkIcon = () => (
 
 export const SE2Stats = ({ stats }: { stats: SE2StatsData | null }) => {
   return (
-    <div className="w-full max-w-xl mx-auto pt-10">
-      <p className="text-lg font-light text-center mb-3 tracking-wide">Join thousands of builders</p>
-      <a href="https://se2-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="block group">
+    <div className={`w-full max-w-xl mx-auto -mt-36 lg:-mt-[34rem] mb-12 lg:mb-20`}>
+      <p className="text-lg font-light text-center mb-3 tracking-wide">Trusted by a big community of builders</p>
+      <a href="http://projects.scaffoldeth.io/" target="_blank" rel="noopener noreferrer" className="block group">
         <div className="bg-base-100/80 backdrop-blur-sm border border-base-300/60 rounded-2xl shadow-sm hover:shadow-md hover:border-base-300 transition-all duration-300">
           {/* Stats grid with dividers */}
           <div className="grid grid-cols-3 divide-x divide-base-300/50">
