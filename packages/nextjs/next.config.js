@@ -11,6 +11,14 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
   },
+  async rewrites() {
+    return [
+      {
+        source: "/skill",
+        destination: "/skill.md",
+      },
+    ];
+  },
 };
 
 module.exports = withPlausibleProxy()(nextConfig);
