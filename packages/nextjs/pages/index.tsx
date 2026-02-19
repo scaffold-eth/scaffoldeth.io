@@ -98,8 +98,12 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
                 >
                   Docs
                 </TrackedLink>
-                <TrackedLink id="llm" href="https://docs.scaffoldeth.io/llms-full.txt" className="text-xs link">
-                  llms-full.txt
+                <TrackedLink
+                  id="skill.md"
+                  href="https://docs.scaffoldeth.io/SKILL.md"
+                  className="text-xs link text-center"
+                >
+                  SKILL.md
                 </TrackedLink>
               </div>
               <TrackedLink
