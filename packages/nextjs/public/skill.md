@@ -30,9 +30,9 @@ npx create-eth@latest -s <hardhat|foundry> <project-name>
 
 Read `<project-name>/AGENTS.md` -- this is the source of truth for the project's structure, patterns, hooks, components, and conventions. Always read it before writing any code.
 
-Check the [create-eth-extensions skills](https://github.com/scaffold-eth/create-eth-extensions) repository for reference skills that cover specialized Ethereum needs (event indexing, token standards, etc.). If any skill is relevant to what the user is building, use it during implementation.
+Check the [create-eth-extensions](https://github.com/scaffold-eth/create-eth-extensions) repository for reference skills that cover specialized Ethereum needs (event indexing, token standards, etc.). The repo follows a branch-based system -- any branch with `*skill` in its name contains a skill, and the actual skill file is located at `skills/<name>/SKILL.md` within that branch. If any skill is relevant to what the user is building, fetch and use it during implementation.
 
-Available reference skills:
+Known reference skills:
 
 - **[Ponder](https://github.com/scaffold-eth/create-eth-extensions/blob/ponder-extension-to-skills/skills/ponder/SKILL.md)** -- Blockchain event indexing with Ponder, including SE-2 integration, schema setup, and GraphQL API
 
