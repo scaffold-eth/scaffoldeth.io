@@ -7,6 +7,7 @@ import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import { SE2Stats, SE2StatsData } from "~~/components/SE2Stats";
+import { SwitchTheme } from "~~/components/SwitchTheme";
 import TrackedLink from "~~/components/TrackedLink";
 
 type HomeProps = {
@@ -40,7 +41,7 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-[29rem]"
+        className="relative flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-[29rem]"
         style={{
           backgroundImage: `url(/assets/heroPattern.svg)`,
           backgroundRepeat: "repeat",
@@ -48,6 +49,9 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
           backgroundSize: "cover",
         }}
       >
+        <div className="absolute top-5 right-5 flex items-center gap-4">
+          <SwitchTheme />
+        </div>
         <div className="flex items-center gap-2">
           <div className="flex relative w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
