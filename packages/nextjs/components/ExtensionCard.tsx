@@ -81,7 +81,7 @@ export const ExtensionCard = ({ extension, isCurated }: { extension: Extension; 
           {extension.description}
         </p>
         {!isCurated && (
-          <div className="mt-2 text-sm text-yellow-600 bg-yellow-100 p-2 rounded">
+          <div className="mt-2 text-sm text-warning-content bg-warning/20 border border-warning/30 p-2 rounded">
             ⚠️ 3rd-party extension. Verify the source before installing.
           </div>
         )}
