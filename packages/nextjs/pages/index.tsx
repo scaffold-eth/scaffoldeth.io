@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { GetStaticProps, NextPage } from "next";
+import { useTheme } from "next-themes";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import { SE2Stats, SE2StatsData } from "~~/components/SE2Stats";
+import { SwitchTheme } from "~~/components/SwitchTheme";
 import TrackedLink from "~~/components/TrackedLink";
 
 type HomeProps = {
@@ -14,6 +16,9 @@ type HomeProps = {
 };
 
 const Home: NextPage<HomeProps> = ({ se2Stats }) => {
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
+
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
   const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
 
@@ -40,21 +45,24 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
       <MetaHeader />
       {/* Hero section  */}
       <div
-        className="flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-[29rem]"
+        className="relative flex flex-col items-center pt-8 pb-20 gap-12 md:gap-20 lg:pb-[29rem]"
         style={{
-          backgroundImage: `url(/assets/heroPattern.svg)`,
+          backgroundImage: `url(${isDarkMode ? "/assets/heroPatternDark.svg" : "/assets/heroPattern.svg"})`,
           backgroundRepeat: "repeat",
           backgroundPosition: "center bottom",
           backgroundSize: "cover",
         }}
       >
-        <div className="flex items-center gap-2">
+        <div className="absolute top-5 right-5 flex items-center gap-4">
+          <SwitchTheme />
+        </div>
+        <div className="flex items-center gap-2 relative z-10">
           <div className="flex relative w-10 h-10">
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
           <p className="text-3xl m-0 font-medium mt-1">Scaffold-ETH 2</p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-8 mb-14 px-4">
+        <div className="flex flex-col justify-center items-center gap-8 mb-14 px-4 relative z-10">
           <h1 className="text-center text-3xl lg:text-5xl max-w-md lg:max-w-2xl px-3 m-0">
             Everything you need to build dApps on Ethereum
           </h1>
@@ -301,7 +309,7 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
 
       {/* Buidl in Community */}
       <div className="bg-[url(/assets/bgHero.png)] h-[576px] bg-cover bg-center flex items-end justify-center">
-        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12">
+        <div className="flex flex-col justify-center items-center bg-base-200 w-4/5 max-w-3xl lg:w-5/12 rounded-3xl shadow-lg shadow-primary p-10 gap-4 -mb-12 relative z-10">
           <p className="text-center text-3xl font-medium m-0">Buidl in Community</p>
           <p className="text-center m-0">
             You can build and learn together with the BuidlGuidl community, joining over 800 members in creating

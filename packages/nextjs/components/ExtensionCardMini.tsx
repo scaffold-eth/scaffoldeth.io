@@ -30,13 +30,13 @@ export const ExtensionCardMini = ({ extension }: ExtensionCardMiniProps) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
+    <div className="bg-base-100 rounded-2xl shadow-md p-4 flex flex-col justify-between border border-base-200">
       <div className="mb-3">
-        <h2 className="text-lg font-semibold mb-2">{extension.name}</h2>
-        <p className="text-sm text-gray-600 mb-3">{extension.description}</p>
+        <h2 className="text-lg font-semibold mb-2 text-base-content">{extension.name}</h2>
+        <p className="text-sm text-base-content/80 mb-3">{extension.description}</p>
       </div>
       <CopyToClipboard text={extension.installCommand} onCopy={handleInstallClick}>
-        <button className="bg-blue-100 text-blue-800 text-sm py-2 px-4 rounded-lg flex items-center justify-between w-full hover:bg-blue-200 transition-colors duration-200">
+        <button className="bg-secondary/50 text-secondary-content text-sm py-2 px-4 rounded-lg flex items-center justify-between w-full hover:bg-secondary transition-colors duration-200">
           <span className="truncate mr-2">{extension.installCommand}</span>
           {commandCopied ? <CheckCircleIcon className="h-5 w-4" /> : <DocumentDuplicateIcon className="h-5 w-4" />}
         </button>

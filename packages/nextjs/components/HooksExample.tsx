@@ -10,8 +10,8 @@ const Purple = ({ children }: { children: ReactNode }) => <span className="text-
 
 export const HooksExample = () => {
   return (
-    <div className="mt-0 lg:mt-16 w-full flex-grow  bg-white rounded-2xl p-6 drop-shadow-[0px_0px_10px_rgba(139,178,241,0.50)]">
-      <div className="bg-base-300/40 w-full h-full border border-primary rounded-3xl p-4 lg:p-6 text-xs lg:text-sm  font-mono overflow-x-scroll whitespace-nowrap  lg:overflow-auto lg:whitespace-normal">
+    <div className="mt-0 lg:mt-16 w-full flex-grow bg-base-100 rounded-2xl p-6 shadow-xl shadow-primary/10 dark:shadow-none border border-base-200">
+      <div className="bg-base-300/40 w-full h-full border border-primary/20 rounded-3xl p-4 lg:p-6 text-xs lg:text-sm font-mono overflow-x-scroll whitespace-nowrap lg:overflow-auto lg:whitespace-normal">
         <p className="my-3">
           <Red>import</Red> {"{ "} useScaffoldReadContract {" } "}
           <Red>from</Red> <Cyan>&quot;~~/hooks/scaffold-eth&quot;</Cyan>;
