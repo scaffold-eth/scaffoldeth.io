@@ -3,10 +3,10 @@ import Image from "next/image";
 import type { GetStaticProps, NextPage } from "next";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { ExtensionCardMini } from "~~/components/ExtensionCardMini";
 import { HooksExample } from "~~/components/HooksExample";
 import { MetaHeader } from "~~/components/MetaHeader";
 import { SE2Stats, SE2StatsData } from "~~/components/SE2Stats";
+import { SkillCardMini } from "~~/components/SkillCardMini";
 import TrackedLink from "~~/components/TrackedLink";
 
 type HomeProps = {
@@ -15,23 +15,22 @@ type HomeProps = {
 
 const Home: NextPage<HomeProps> = ({ se2Stats }) => {
   const [npxCommandCopied, setNpxCommandCopied] = useState(false);
-  const [extensionCommandCopied, setExtensionCommandCopied] = useState(false);
 
-  const featuredExtensions = [
+  const featuredSkills = [
     {
       name: "Ponder",
-      description: "Uses Ponder for powerful blockchain indexing",
-      installCommand: "npx create-eth@latest -e ponder",
+      description: "Index onchain data with a Ponder backend.",
+      href: "https://docs.scaffoldeth.io/build-with-ai/ponder",
     },
     {
-      name: "ERC-20",
-      description: "Start with a simple ERC-20 token implementation",
-      installCommand: "npx create-eth@latest -e erc-20",
+      name: "ERC-721",
+      description: "Add an ERC-721 NFT token contract to your project.",
+      href: "https://docs.scaffoldeth.io/build-with-ai/erc-721",
     },
     {
       name: "Subgraph",
-      description: "Integrate a subgraph for efficient data querying",
-      installCommand: "npx create-eth@latest -e subgraph",
+      description: "Index events with a The Graph subgraph.",
+      href: "https://docs.scaffoldeth.io/build-with-ai/subgraph",
     },
   ];
 
@@ -116,24 +115,27 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
               </TrackedLink>
             </div>
             <div className="divider px-6 sm:px-20 my-3">OR</div>
-            <div className="flex items-center gap-2 mx-2 mb-1">
-              <div className="badge badge-success">New</div>
-              <p className="m-0 text-center text-sm sm:text-base">
-                Use one of our starter-kit{" "}
-                <a href="#extensions-section" className="link">
-                  extensions.
-                </a>
+            <div className="flex flex-col items-center gap-1 mx-2 mb-1">
+              <div className="flex items-center gap-2">
+                <div className="badge badge-success">New</div>
+                <p className="m-0 text-center text-sm sm:text-base font-medium">Build features with AI Skills</p>
+              </div>
+              <p className="m-0 text-center text-sm">
+                Reusable AI agent instructions that add features to your project.{" "}
+                <TrackedLink id="SkillsOverviewHero" href="https://docs.scaffoldeth.io/build-with-ai" className="link">
+                  Read the overview →
+                </TrackedLink>
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-5xl">
-              {featuredExtensions.map((extension, index) => (
-                <ExtensionCardMini key={index} extension={extension} />
+              {featuredSkills.map((skill, index) => (
+                <SkillCardMini key={index} skill={skill} />
               ))}
             </div>
             <div className="w-full max-w-5xl flex justify-end">
               <p className="m-0 text-center lg:text-left link">
-                <TrackedLink id="ExtensionsListHero" href="/extensions">
-                  Explore all the extensions
+                <TrackedLink id="SkillsListHero" href="https://docs.scaffoldeth.io/build-with-ai/skills">
+                  Explore all the skills
                 </TrackedLink>
               </p>
             </div>
@@ -205,93 +207,6 @@ const Home: NextPage<HomeProps> = ({ se2Stats }) => {
               <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] md:max-w-md lg:max-w-none lg:w-3/4 link">
                 <TrackedLink id="Components" href="https://docs.scaffoldeth.io/components/">
                   Check out all the components
-                </TrackedLink>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Extensions Section */}
-      <div id="extensions-section" className="bg-base-200">
-        <div className="container max-w-[90%] lg:max-w-7xl m-auto py-16 lg:py-20 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-5 lg:gap-0">
-          <div className="w-full lg:w-3/5 lg:order-2 mb-8 lg:mb-0 lg:pl-24">
-            <div className="w-full max-w-[600px] mx-auto lg:ml-auto rounded-2xl overflow-hidden shadow-lg shadow-primary">
-              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                <iframe
-                  src="https://www.youtube.com/embed/XQCv533XGZk"
-                  title="Scaffold-ETH 2 Extensions Introduction"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute top-0 left-0 w-full h-full"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full lg:w-2/5 lg:order-1 space-y-6">
-            <div className="flex items-center justify-center lg:flex-col lg:items-start lg:justify-start gap-2 pt-4 lg:pt-0">
-              <span className="text-2xl">🔌</span> {/* TODO Change Emoji icon for custom icon*/}
-              <p className="text-center lg:text-left text-xl m-0 font-light">EXTENSIONS</p>
-            </div>
-            <h2 className="text-2xl lg:text-4xl text-center lg:text-left font-medium">
-              Modular add-ons for your initial project setup
-            </h2>
-            <div className="text-center lg:text-left space-y-4 max-w-[450px] md:max-w-[600px] lg:max-w-none m-auto lg:mx-0 md:px-12 lg:px-0">
-              <p>
-                Extensions are modular add-ons for Scaffold-ETH 2 that provide additional functionality or serve as
-                starter-kits for specific features.
-              </p>
-              <p>
-                They offer seamless integration with the base project, enabling quick addition of new features, pages,
-                contracts, or components during initial project setup.
-              </p>
-              <p>
-                They serve as starting points for your project, not finished products, and maintain compatibility with
-                Scaffold-ETH 2 core updates and improvements.
-              </p>
-            </div>
-            <p
-              className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none"
-              style={{ marginBottom: "-1rem" }}
-            >
-              Example usage:
-            </p>
-            <div className="w-full max-w-[450px] mx-auto lg:mx-0">
-              <CopyToClipboard
-                text="npx create-eth@latest -e gitHubUsername/repoName"
-                onCopy={() => {
-                  setExtensionCommandCopied(true);
-                  setTimeout(() => {
-                    setExtensionCommandCopied(false);
-                  }, 800);
-                }}
-              >
-                <div className="flex items-center justify-between border-2 border-primary rounded-xl px-3 py-2 text-xs sm:text-sm">
-                  <p className="m-0 mr-2">npx create-eth@latest -e gitHubUsername/repoName</p>
-                  {extensionCommandCopied ? (
-                    <CheckCircleIcon
-                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <DocumentDuplicateIcon
-                      className="text-xl font-normal h-6 w-4 flex-shrink-0 cursor-pointer"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </CopyToClipboard>
-            </div>
-            <div className="space-y-3">
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
-                <TrackedLink id="Extensions" href="https://docs.scaffoldeth.io/extensions/">
-                  Learn more about extensions
-                </TrackedLink>
-              </p>
-              <p className="m-auto text-center lg:text-left lg:mx-0 max-w-[400px] lg:max-w-none lg:pr-6 link">
-                <TrackedLink id="ExtensionsList" href="/extensions">
-                  Check out all the available extensions
                 </TrackedLink>
               </p>
             </div>

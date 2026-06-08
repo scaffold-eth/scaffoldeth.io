@@ -76,6 +76,21 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, c
           provided for each extension.
         </p>
 
+        <div className="alert border border-warning max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm md:text-base">
+          <span>
+            ⚠️ Extensions are deprecated and no longer actively maintained. To add features to your project, use Skills
+            instead.
+          </span>
+          <a
+            href="https://docs.scaffoldeth.io/build-with-ai"
+            target="_blank"
+            rel="noreferrer"
+            className="link font-medium whitespace-nowrap"
+          >
+            Explore Skills →
+          </a>
+        </div>
+
         {/* Combined extensions list */}
         <div className="flex-grow">
           {filteredExtensions.length > 0 ? (
