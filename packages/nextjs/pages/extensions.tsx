@@ -5,6 +5,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ExtensionCard } from "~~/components/ExtensionCard";
 import { MetaHeader } from "~~/components/MetaHeader";
+import TrackedLink from "~~/components/TrackedLink";
 import { fetchAndParseTypeScriptExtensions } from "~~/utils/scaffold-eth";
 
 const BGAPP_API_URL = process.env.BGAPP_API_URL;
@@ -70,26 +71,25 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, c
             <MagnifyingGlassIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-gray-400" />
           </div>
         </div>
-        <p className="text-base md:text-lg mb-8 text-center max-w-4xl mx-auto">
-          Explore our Curated (by BuidlGuidl) and community-contributed extensions for Scaffold-ETH 2.{" "}
-          <br className="hidden md:inline"></br> To install an extension, simply copy and run the installation command
-          provided for each extension.
-        </p>
-
         <div className="alert border border-warning max-w-4xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm md:text-base">
           <span>
             ⚠️ Extensions are deprecated and no longer actively maintained. To add features to your project, use Skills
             instead.
           </span>
-          <a
+          <TrackedLink
+            id="ExploreSkillsExtensions"
             href="https://docs.scaffoldeth.io/build-with-ai"
-            target="_blank"
-            rel="noreferrer"
             className="link font-medium whitespace-nowrap"
           >
             Explore Skills →
-          </a>
+          </TrackedLink>
         </div>
+
+        <p className="text-base md:text-lg mb-8 text-center max-w-4xl mx-auto">
+          Explore our Curated (by BuidlGuidl) and community-contributed extensions for Scaffold-ETH 2.{" "}
+          <br className="hidden md:inline"></br> To install an extension, simply copy and run the installation command
+          provided for each extension.
+        </p>
 
         {/* Combined extensions list */}
         <div className="flex-grow">
