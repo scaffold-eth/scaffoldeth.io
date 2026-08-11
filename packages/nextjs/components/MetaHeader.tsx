@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { SITE_URL } from "~~/utils/site";
 
 type MetaHeaderProps = {
   title?: string;
@@ -9,8 +11,7 @@ type MetaHeaderProps = {
   children?: React.ReactNode;
 };
 
-// Images must have an absolute path to work properly on Twitter.
-// We try to get it dynamically from Vercel, but we default to relative path.
+// The frame endpoint is served by whichever deployment renders the page.
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/` : "/";
 
 export const MetaHeader = ({
@@ -20,8 +21,12 @@ export const MetaHeader = ({
   twitterCard = "summary_large_image",
   children,
 }: MetaHeaderProps) => {
-  const imageUrl = baseUrl + image;
-  const twitterImageUrl = baseUrl + "twitterThumbnail.png";
+  const { asPath } = useRouter();
+  // Social images need an absolute URL that stays valid across deploys.
+  const imageUrl = `${SITE_URL}/${image}`;
+  const twitterImageUrl = `${SITE_URL}/twitterThumbnail.png`;
+  // Query strings and hashes are dropped so each page has one canonical address.
+  const canonicalUrl = SITE_URL + asPath.split(/[?#]/)[0];
 
   return (
     <Head>
@@ -60,6 +65,7 @@ export const MetaHeader = ({
         </>
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
+      <link rel="canonical" href={canonicalUrl} />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       {children}
     </Head>
