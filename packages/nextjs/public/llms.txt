@@ -1,0 +1,21 @@
+# Scaffold-ETH 2
+
+> Open-source toolkit for building decentralized applications on Ethereum. Contracts, a
+> frontend and deploy scripts in one repo, with a debug UI that adapts to your contracts as
+> you edit them. Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem and TypeScript.
+> Start a project with `npx create-eth@latest`.
+
+## Pages
+
+- [Scaffold-ETH 2](https://scaffoldeth.io/): What the toolkit includes, its stack, and how to start a project.
+- [Extensions](https://scaffoldeth.io/extensions): Add-ons installed at project creation with `npx create-eth@latest -e <name>`.
+
+## Documentation
+
+- [Docs](https://docs.scaffoldeth.io/): Installation, components, hooks, recipes, deploying and extensions.
+- [Docs index for agents](https://docs.scaffoldeth.io/llms.txt): The complete index, and the authority on documentation. This file only covers scaffoldeth.io.
+- [SKILL.md](https://docs.scaffoldeth.io/SKILL.md): Entry point AI agents use to scaffold a new project.
+
+## Source
+
+- [scaffold-eth/scaffold-eth-2](https://github.com/scaffold-eth/scaffold-eth-2): The toolkit repository.
