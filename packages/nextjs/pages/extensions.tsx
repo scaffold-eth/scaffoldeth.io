@@ -95,7 +95,7 @@ const ExtensionsList: NextPage<ExtensionsListProps> = ({ thirdPartyExtensions, c
   );
 };
 
-// get third party extensions from buidlguidl app (builds with "extension" type) and curated extensions from create-eth repo
+// get third party extensions from buidlguidl app (builds with "extension" type) and curated extensions from scaffold-eth-2 repo
 export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
   try {
     if (!BGAPP_API_URL) {
@@ -103,11 +103,11 @@ export const getStaticProps: GetStaticProps<ExtensionsListProps> = async () => {
     }
 
     const createEthExtensionsData = await fetchAndParseTypeScriptExtensions(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/main/src/extensions/create-eth-extensions.ts",
+      "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/src/extensions/create-eth-extensions.ts",
     );
 
     const organizationsData = await fetchAndParseTypeScriptExtensions(
-      "https://raw.githubusercontent.com/scaffold-eth/create-eth/main/src/extensions/organizations.ts",
+      "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/src/extensions/organizations.ts",
     );
 
     const dataCuratedExtensions = [...createEthExtensionsData, ...organizationsData];
